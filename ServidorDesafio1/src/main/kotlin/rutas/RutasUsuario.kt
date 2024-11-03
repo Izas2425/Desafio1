@@ -6,6 +6,7 @@ import io.ktor.http.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import modelo.Usuario
 import modelo.UsuarioLogIn
 
 val usuarioDAO: UsuarioDAO = UsuarioDAOImpl()
@@ -44,6 +45,19 @@ fun Route.rutasUsuario() {
                 return@post call.respond(HttpStatusCode.BadRequest, null)
             }
             call.respond(HttpStatusCode.OK, usuario)
+        }
+    }
+
+    route("/registrarUsuario") {
+        post{
+            val user = call.receive<Usuario>()
+            val usuario = usuarioDAO.obtenerPorId(user.id)
+            if(usuario != null) return@post call.respond(HttpStatusCode.BadRequest, null)
+
+            if (!usuarioDAO.insertar(user)){
+                return@post call.respond(HttpStatusCode.Conflict, false)
+            }
+            call.respond(HttpStatusCode.Created, true)
         }
     }
 
