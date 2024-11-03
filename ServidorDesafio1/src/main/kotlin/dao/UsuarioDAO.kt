@@ -4,8 +4,8 @@ import modelo.Usuario
 
 interface UsuarioDAO {
     fun insertar(usuario: Usuario): Boolean
-    fun obtener(nombre: String): Usuario?
+    fun obtener(id: Int): Usuario?
     fun actualizar(usuario: Usuario): Boolean
-    fun eliminar(nombre: String): Boolean
+    fun eliminar(id: Int): Boolean
     fun obtenerTodos(): List<Usuario>
 }
