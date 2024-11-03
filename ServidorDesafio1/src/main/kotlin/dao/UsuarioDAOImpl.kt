@@ -22,12 +22,35 @@ class UsuarioDAOImpl: UsuarioDAO {
     }
 
     // Pasado el id de un usuario devuelve los datos de éste
-    override fun obtener(id: Int): Usuario? {
+    override fun obtenerPorId(id: Int): Usuario? {
         val sql = "SELECT * FROM usuarios WHERE id = ?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
             statement.setInt(1, id)
+            val resultSet = statement.executeQuery()
+
+            if (resultSet.next()) {
+                return Usuario(
+                    id = resultSet.getInt("id"),
+                    nombre = resultSet.getString("nombre"),
+                    password = resultSet.getString("password"),
+                    role = resultSet.getString("role"),
+                    edad = resultSet.getInt("edad"),
+                    experiencia = resultSet.getInt("experiencia"),
+                    foto = resultSet.getString("foto")
+                )
+            }
+        }
+        return null
+    }
+
+    override fun obtenerPorNombre(nombre: String): Usuario? {
+        val sql = "SELECT * FROM usuarios WHERE nombre = ?"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setString(1, nombre)
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
