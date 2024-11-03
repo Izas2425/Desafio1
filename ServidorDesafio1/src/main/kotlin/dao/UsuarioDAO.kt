@@ -1,5 +1,7 @@
 package dao
 
+import modelo.Usuario
+
 interface UsuarioDAO {
     fun insertar(usuario: Usuario): Boolean
     fun obtener(nombre: String): Usuario?
