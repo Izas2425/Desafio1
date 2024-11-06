@@ -80,6 +80,7 @@ class UsuarioDAOImpl: UsuarioDAO {
             statement.setInt(4, usuario.edad)
             statement.setInt(5, usuario.experiencia)
             statement.setString(6, usuario.foto)
+            statement.setInt(7, usuario.id)
 
             return statement.executeUpdate() > 0
         }

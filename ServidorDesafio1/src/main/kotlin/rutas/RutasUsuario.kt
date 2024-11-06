@@ -61,4 +61,30 @@ fun Route.rutasUsuario() {
         }
     }
 
+    route("/borrarUsuario") {
+        delete("{id?}") {
+            val id = call.parameters["id"]?.toIntOrNull()  ?: return@delete call.respond(HttpStatusCode.BadRequest, false)
+
+            val usuario = usuarioDAO.obtenerPorId(id)?: return@delete call.respond(HttpStatusCode.NotFound, false)
+
+            if (!usuarioDAO.eliminar(id)){
+                return@delete call.respond(HttpStatusCode.Conflict, false)
+            }
+            call.respond(HttpStatusCode.Accepted, true)
+
+        }
+    }
+    route("/modificarUsuario") {
+        put("{id?}") {
+            val id = call.parameters["id"]?.toIntOrNull() ?: return@put call.respond(HttpStatusCode.BadRequest, false)
+            val user = call.receive<Usuario>()
+            val usuario = usuarioDAO.obtenerPorId(id) ?: return@put call.respond(HttpStatusCode.NotFound, false)
+            if (!usuarioDAO.actualizar(user)){
+                return@put call.respond(HttpStatusCode.BadRequest, false)
+            }
+            call.respond(HttpStatusCode.Accepted, true)
+        }
+    }
+
+
 }
