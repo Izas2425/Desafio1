@@ -6,7 +6,7 @@ class UsuarioDAOImpl: UsuarioDAO {
 
     // Pasado un usuario lo inserta en la base de datos
     override fun insertar(usuario: Usuario): Boolean {
-        val sql = "INSERT INTO usuarios (nombre, password, role, edad, experiencia, foto ) VALUES (?, ?, ?, ?, ?, ?)"
+        val sql = "INSERT INTO usuarios (nombre, password, role, edad, experiencia, foto, activado, nivel ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -16,6 +16,8 @@ class UsuarioDAOImpl: UsuarioDAO {
             statement.setInt(4, usuario.edad)
             statement.setInt(5, usuario.experiencia)
             statement.setString(6, usuario.foto)
+            statement.setInt(7, usuario.activado)
+            statement.setString(8, usuario.nivel)
             return statement.executeUpdate() > 0
         }
         return false
@@ -38,7 +40,10 @@ class UsuarioDAOImpl: UsuarioDAO {
                     role = resultSet.getString("role"),
                     edad = resultSet.getInt("edad"),
                     experiencia = resultSet.getInt("experiencia"),
-                    foto = resultSet.getString("foto")
+                    foto = resultSet.getString("foto"),
+                    activado = resultSet.getInt("activado"),
+                    nivel = resultSet.getString("nivel")
+
                 )
             }
         }
@@ -61,7 +66,9 @@ class UsuarioDAOImpl: UsuarioDAO {
                     role = resultSet.getString("role"),
                     edad = resultSet.getInt("edad"),
                     experiencia = resultSet.getInt("experiencia"),
-                    foto = resultSet.getString("foto")
+                    foto = resultSet.getString("foto"),
+                    activado = resultSet.getInt("activado"),
+                    nivel = resultSet.getString("nivel")
                 )
             }
         }
@@ -70,7 +77,7 @@ class UsuarioDAOImpl: UsuarioDAO {
 
     // Pasado un usuario, actualiza sus datos en la bd
     override fun actualizar(usuario: Usuario): Boolean {
-        val sql = "UPDATE usuarios SET nombre = ?, password = ?, role = ?, edad = ?, experiencia = ?, foto = ? WHERE id = ?"
+        val sql = "UPDATE usuarios SET nombre = ?, password = ?, role = ?, edad = ?, experiencia = ?, foto = ?, activado = ?, nivel = ? WHERE id = ?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -80,7 +87,9 @@ class UsuarioDAOImpl: UsuarioDAO {
             statement.setInt(4, usuario.edad)
             statement.setInt(5, usuario.experiencia)
             statement.setString(6, usuario.foto)
-            statement.setInt(7, usuario.id)
+            statement.setInt(7, usuario.activado)
+            statement.setString(8, usuario.nivel)
+            statement.setInt(9, usuario.id)
 
             return statement.executeUpdate() > 0
         }
@@ -115,7 +124,9 @@ class UsuarioDAOImpl: UsuarioDAO {
                     role = resultSet.getString("role"),
                     edad = resultSet.getInt("edad"),
                     experiencia = resultSet.getInt("experiencia"),
-                    foto = resultSet.getString("foto")
+                    foto = resultSet.getString("foto"),
+                    activado = resultSet.getInt("activado"),
+                    nivel = resultSet.getString("nivel")
                 )
                 usuarios.add(usuario)
             }
