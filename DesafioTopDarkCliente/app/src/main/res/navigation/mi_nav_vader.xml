@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mi_nav_vader">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mi_nav_vader"
+    app:startDestination="@id/fragmentoInicialVader">
 
+    <fragment
+        android:id="@+id/fragmentoInicialVader"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoInicialVader"
+        android:label="Vader"
+        tools:layout="@layout/fragment_fragmento_inicial_vader" />
+    <fragment
+        android:id="@+id/navegation_fragmento_v_naves"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoVNaves"
+        android:label="fragment_fragmento_v_naves"
+        tools:layout="@layout/fragment_fragmento_v_naves" />
+    <fragment
+        android:id="@+id/navegation_fragmento_v_pilotos"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoVPilotos"
+        android:label="fragment_fragmento_v_pilotos"
+        tools:layout="@layout/fragment_fragmento_v_pilotos" />
+    <fragment
+        android:id="@+id/navegation_fragmento_v_misiones"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoVMisiones"
+        android:label="fragment_fragmento_v_misiones"
+        tools:layout="@layout/fragment_fragmento_v_misiones" />
 </navigation>
