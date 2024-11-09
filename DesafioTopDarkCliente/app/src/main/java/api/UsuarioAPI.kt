@@ -15,7 +15,10 @@ interface UsuarioAPI {
     @GET("listadoUsuarios")
     suspend fun getUsuarios(): Response<MutableList<Usuario>>
 
-    @GET("listado/{id}")
+    @GET("listadoPilotos")
+    suspend fun getPilotos(): Response<MutableList<Usuario>>
+
+    @GET("listadoUsuarios/{id}")
     suspend fun getUsuario(@Path("id") id: Int): Response<Usuario>
 
     @POST("login")
