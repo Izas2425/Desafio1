@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
                 usuarioViewModel.limpiarRespuesta()
                 if (user.role == "Vader"){
                     Toast.makeText(this, "se ha logeado Vader", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Vader::class.java)
+                    startActivity(intent)
                 }
                 else{
                     if (user.role == "Piloto")
