@@ -1,6 +1,7 @@
 package com.example.desafiotopdarkcliente
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -33,8 +34,12 @@ class Vader : AppCompatActivity() {
 
         // Configura la ToolBar como ActionBar
         setSupportActionBar(binding.tbVader)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // Cuando se pinche sobre la flecha vuelva salga a la principal
+        binding.tbVader.setNavigationOnClickListener {
+            finish()
+        }
 
         //*********** Para la Navigation Bottom Bar *****************
         val navView: BottomNavigationView = binding.btnNavVader
