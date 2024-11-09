@@ -20,6 +20,7 @@ fun Route.rutasUsuario() {
                 return@get call.respond(HttpStatusCode.NotFound, null)
             }
         }
+
         get("{id?}") {
             // Intenta obtener y convertir el parámetro "id" de la URL a Int.
             val id = call.parameters["id"]?.toIntOrNull() ?: return@get call.respond(HttpStatusCode.BadRequest, null)
@@ -31,6 +32,16 @@ fun Route.rutasUsuario() {
             call.respond(HttpStatusCode.OK, usuario)
         }
     }
+
+   route("/listadoPilotos"){
+       get {
+           if (usuarioDAO.obtenerPilotos().isNotEmpty()) {
+               return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerPilotos())
+           } else {
+               return@get call.respond(HttpStatusCode.NotFound, null)
+           }
+       }
+   }
 
     route("/login") {
         post{

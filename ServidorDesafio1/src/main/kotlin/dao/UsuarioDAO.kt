@@ -9,4 +9,5 @@ interface UsuarioDAO {
     fun actualizar(usuario: Usuario): Boolean
     fun eliminar(id: Int): Boolean
     fun obtenerTodos(): List<Usuario>
+    fun obtenerPilotos(): List<Usuario>
 }
