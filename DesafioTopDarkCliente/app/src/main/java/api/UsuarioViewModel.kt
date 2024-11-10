@@ -73,6 +73,21 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
+    fun getPilotosVM() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<MutableList<Usuario>> = UserNetwork.retrofit.getPilotos()
+
+            if (response.isSuccessful) {
+                _myResponseList.value = response.body()
+            } else {
+                _myResponseList.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
     fun addUserVM(user: Usuario) {
         viewModelScope.launch {
             val response: Response<Boolean> = UserNetwork.retrofit.addUsuario(user)

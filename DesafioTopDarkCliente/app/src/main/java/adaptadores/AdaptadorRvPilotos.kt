@@ -1,0 +1,63 @@
+package adaptadores
+
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.example.desafiotopdarkcliente.R
+import com.example.desafiotopdarkcliente.ui.FragmentoVPilotosViewModel
+import modelo.MostrarPiloto
+import parametros.Parametros
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+
+class AdaptadorRvPilotos (
+    var pilotos: ArrayList<MostrarPiloto>,
+    var context: Context,
+    private val viewModelVPilotosViewModel: FragmentoVPilotosViewModel) : RecyclerView.Adapter<AdaptadorRvPilotos.ViewHolder>(){
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = pilotos.get(position)
+        holder.bind(item,context, position, this)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_card_piloto, parent, false)
+        val viewHolder = ViewHolder(vista)
+        return viewHolder
+    }
+
+    override fun getItemCount(): Int {
+        return pilotos.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(nuevaLista: ArrayList<MostrarPiloto>) {
+        pilotos = nuevaLista
+        notifyDataSetChanged()
+    }
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val nombrePiloto = view.findViewById(R.id.tvNombreP) as TextView
+        val nivelPiloto = view.findViewById(R.id.tvNivelP) as TextView
+
+
+        @SuppressLint("ResourceAsColor")
+        fun bind(user: MostrarPiloto, context: Context, pos: Int, adaptadorRvDatos: AdaptadorRvPilotos){
+            nombrePiloto.text = user.nombre
+            nivelPiloto.text = user.nivel
+        }
+    }
+
+
+}
+
+    
