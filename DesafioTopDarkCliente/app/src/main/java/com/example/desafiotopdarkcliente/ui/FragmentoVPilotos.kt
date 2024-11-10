@@ -46,7 +46,7 @@ class FragmentoVPilotos : Fragment() {
             if (!pilotos.isEmpty()){
                 datosRepresentar.clear()
                 for (user in pilotos) {
-                    Log.d("Fernando", user.toString())
+                    Log.d("Izaskun", user.toString())
                     datosRepresentar.add(MostrarPiloto(user.nombre.toString(), user.nivel.toString()))
                 }
                 customAdapter.updateData(datosRepresentar)
