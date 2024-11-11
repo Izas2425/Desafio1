@@ -24,12 +24,12 @@ interface UsuarioAPI {
     @POST("login")
     suspend fun  login(@Body userData: UsuarioLogIn): Response<Usuario>
 
-    @POST("registrar")
+    @POST("registrarUsuario")
     suspend fun addUsuario(@Body userData: Usuario): Response<Boolean>
 
-    @DELETE("borrar/{id}")
+    @DELETE("borrarUsuario/{id}")
     suspend fun deleteUsuario(@Path("id") id: Int): Response<Boolean>
 
-    @PUT("modificar/{id}")
+    @PUT("modificarUsuario/{id}")
     suspend fun updateUsuario(@Path("id") id: Int, @Body userData: Usuario): Response<Boolean>
 }
