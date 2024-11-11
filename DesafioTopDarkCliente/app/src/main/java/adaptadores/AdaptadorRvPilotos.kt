@@ -1,23 +1,15 @@
 package adaptadores
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.ui.FragmentoVPilotosViewModel
 import modelo.MostrarPiloto
-import parametros.Parametros
-import java.time.LocalDate
-import java.time.Period
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 class AdaptadorRvPilotos (
     var pilotos: ArrayList<MostrarPiloto>,
@@ -46,8 +38,8 @@ class AdaptadorRvPilotos (
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nombrePiloto = view.findViewById(R.id.tvNombreP) as TextView
-        val nivelPiloto = view.findViewById(R.id.tvNivelP) as TextView
+        val nombrePiloto = view.findViewById(R.id.tvMatriculaN) as TextView
+        val nivelPiloto = view.findViewById(R.id.tvTipoN) as TextView
 
 
         @SuppressLint("ResourceAsColor")
