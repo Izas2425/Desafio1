@@ -10,17 +10,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.UsuarioViewModel
 import com.example.desafiotopdarkcliente.MainViewModel
+import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVPilotosBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import modelo.MostrarPiloto
 
 class FragmentoVPilotos : Fragment() {
     private var _binding: FragmentFragmentoVPilotosBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var usuarioViewModel: UsuarioViewModel
+    private lateinit var navController: NavController
+
+
     private lateinit var mainViewModel: MainViewModel
     // ViewModel
     private val fragmentoVPilotosViewModel : FragmentoVPilotosViewModel by viewModels()
@@ -28,6 +35,8 @@ class FragmentoVPilotos : Fragment() {
     // Para la RV
     var datosRepresentar: ArrayList<MostrarPiloto> = ArrayList()
     lateinit var customAdapter: AdaptadorRvPilotos
+
+
 
     companion object {
         fun newInstance() = FragmentoVPilotos()
@@ -76,6 +85,11 @@ class FragmentoVPilotos : Fragment() {
             datosRepresentar.clear()
             datosRepresentar.addAll(listaPilotos)
             customAdapter.notifyDataSetChanged()
+        }
+
+        val fabAddPiloto: FloatingActionButton = view.findViewById(R.id.fabAddPiloto)
+        fabAddPiloto.setOnClickListener{
+            findNavController().navigate(R.id.action_VPilotos_to_AddPiloto)
         }
     }
 

@@ -19,10 +19,20 @@
         android:id="@+id/navegation_fragmento_v_pilotos"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoVPilotos"
         android:label="fragment_fragmento_v_pilotos"
-        tools:layout="@layout/fragment_fragmento_v_pilotos" />
+        tools:layout="@layout/fragment_fragmento_v_pilotos">
+             <action
+                android:id="@+id/action_VPilotos_to_AddPiloto"
+                app:destination="@id/navegation_fragmento_add_piloto" />
+    </fragment>
     <fragment
         android:id="@+id/navegation_fragmento_v_misiones"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoVMisiones"
         android:label="fragment_fragmento_v_misiones"
         tools:layout="@layout/fragment_fragmento_v_misiones" />
+
+    <fragment
+        android:id="@+id/navegation_fragmento_add_piloto"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddPiloto"
+        android:label="Registrar nuevo piloto"
+        tools:layout="@layout/fragment_fragmento_add_piloto"/>
 </navigation>

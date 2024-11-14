@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -36,9 +37,13 @@ class Vader : AppCompatActivity() {
         setSupportActionBar(binding.tbVader)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Cuando se pinche sobre la flecha vuelva salga a la principal
+        // Cuando se pinche vuelva hacia atras
         binding.tbVader.setNavigationOnClickListener {
-            finish()
+            val navController = findNavController(R.id.miFragContainer)
+            if (!navController.navigateUp()){
+                finish()
+            }
+
         }
 
         //*********** Para la Navigation Bottom Bar *****************
@@ -82,5 +87,9 @@ class Vader : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.miFragContainer)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
