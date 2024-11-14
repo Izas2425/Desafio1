@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.UsuarioViewModel
-import com.example.desafiotopdarkcliente.R
+import com.example.desafiotopdarkcliente.MainViewModel
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVPilotosBinding
 import modelo.MostrarPiloto
 
@@ -23,6 +21,7 @@ class FragmentoVPilotos : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var usuarioViewModel: UsuarioViewModel
+    private lateinit var mainViewModel: MainViewModel
     // ViewModel
     private val fragmentoVPilotosViewModel : FragmentoVPilotosViewModel by viewModels()
 
@@ -39,15 +38,15 @@ class FragmentoVPilotos : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        usuarioViewModel = ViewModelProvider(this)[UsuarioViewModel::class.java]
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        usuarioViewModel.getPilotosVM()
-        usuarioViewModel.myResponseList.observe(this) {pilotos ->
+        mainViewModel.getPilotosVM()
+        mainViewModel.myResponseList.observe(this) {pilotos ->
             if (!pilotos.isEmpty()){
                 datosRepresentar.clear()
                 for (user in pilotos) {
                     Log.d("Izaskun", user.toString())
-                    datosRepresentar.add(MostrarPiloto(user.nombre.toString(), user.nivel.toString()))
+                    datosRepresentar.add(MostrarPiloto( user.id, user.nombre.toString(), user.nivel.toString()))
                 }
                 customAdapter.updateData(datosRepresentar)
             }
@@ -92,4 +91,6 @@ class FragmentoVPilotos : Fragment() {
         customAdapter = AdaptadorRvPilotos( datosRepresentar, requireContext(), fragmentoVPilotosViewModel )
         binding.listaPilotosRecycler.adapter = customAdapter
     }
+
+
 }

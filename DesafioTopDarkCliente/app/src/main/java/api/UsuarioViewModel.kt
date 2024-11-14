@@ -119,6 +119,21 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
+    fun deletePilotoVM(id: Int){
+        viewModelScope.launch {
+            val response: Response<Boolean> = UserNetwork.retrofit.deleteUsuario(id)
+
+            if (response.isSuccessful) {
+                _resOperacion.value = response.body()
+                _errorCode.value = response.code()
+                getPilotosVM()
+            } else {
+                _resOperacion.value = false
+                _errorCode.value = response.code()
+            }
+        }
+    }
+
     fun obtenerTodosLosUsuarios(){
         viewModelScope.launch {
             _myResponseList.value = UserNetwork.retrofit.getUsuarios().body()

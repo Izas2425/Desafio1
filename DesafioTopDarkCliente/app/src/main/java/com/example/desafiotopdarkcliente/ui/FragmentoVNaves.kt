@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.NaveViewModel
 import api.UsuarioViewModel
+import com.example.desafiotopdarkcliente.MainViewModel
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVNavesBinding
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVPilotosBinding
@@ -25,6 +26,7 @@ class FragmentoVNaves : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var naveViewModel: NaveViewModel
+
     // ViewModel
     private val fragmentoVNavesViewModel : FragmentoVNavesViewModel by viewModels()
 

@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var usuarioViewModel: UsuarioViewModel
+    private lateinit var mainViewModel: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +37,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        usuarioViewModel.myResponse.observe(this, Observer { user ->
+        mainViewModel.myResponse.observe(this, Observer { user ->
             user?.let {
               //  val intent = Intent(this, VentanaVader::class.java)
              //   startActivity(intent)
                 Parametros.usuarioLogeado = user.id
                 limpiar()
-                usuarioViewModel.limpiarRespuesta()
+                mainViewModel.limpiarRespuesta()
                 if (user.role == "Vader"){
                     Toast.makeText(this, "se ha logeado Vader", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Vader::class.java)
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        usuarioViewModel.errorCode.observe(this, Observer { code ->
+        mainViewModel.errorCode.observe(this, Observer { code ->
             if (code != null) {
                 when (code) {
                     200 -> Toast.makeText(this, "Sesion Iniciada", Toast.LENGTH_SHORT).show()
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     404 -> Toast.makeText(this, "Error 404: El usuario no existe", Toast.LENGTH_SHORT).show()
                     else -> Toast.makeText(this, "Error Desconocido", Toast.LENGTH_SHORT).show()
                 }
-                usuarioViewModel.limpiarError()
+                mainViewModel.limpiarError()
             }
         })
 
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             if (binding.tfUsuario.editText?.text.toString().isEmpty() ||  binding.tfPassword.editText?.text.toString().isEmpty()) {
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             } else {
-                usuarioViewModel.loginVM(UsuarioLogIn(binding.tfUsuario.editText?.text.toString(), binding.tfPassword.editText?.text.toString()))
+                mainViewModel.loginVM(UsuarioLogIn(binding.tfUsuario.editText?.text.toString(), binding.tfPassword.editText?.text.toString()))
                 Log.e("Izaskun", binding.tfPassword.editText?.text.toString())
             }
         }
