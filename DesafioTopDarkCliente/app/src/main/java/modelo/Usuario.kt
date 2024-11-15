@@ -26,5 +26,8 @@ data class Usuario(
     val nivel:String? = null,
 
     @SerializedName("activado")
-    val activado:Int? = null
+    val activado:Int? = null,
+
+    @SerializedName("foto")
+    val foto:String? = null
 ): Serializable

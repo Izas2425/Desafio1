@@ -7,14 +7,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.ui.FragmentoVPilotosViewModel
 import modelo.MostrarPiloto
+import modelo.Usuario
 
 class AdaptadorRvPilotos (
     var pilotos: ArrayList<MostrarPiloto>,
@@ -49,11 +52,37 @@ class AdaptadorRvPilotos (
         val nombrePiloto = view.findViewById(R.id.tvMatriculaN) as TextView
         val nivelPiloto = view.findViewById(R.id.tvTipoN) as TextView
 
+        val btnDetalleP = view.findViewById(R.id.btnDetalleP) as Button
+
 
         @SuppressLint("ResourceAsColor")
         fun bind(user: MostrarPiloto, context: Context, pos: Int, adaptadorRvDatos: AdaptadorRvPilotos){
             nombrePiloto.text = user.nombre
             nivelPiloto.text = user.nivel
+
+            btnDetalleP.setOnClickListener {
+               adaptadorRvDatos.viewModelVPilotosViewModel.getUsuarioVM(user.id!!)
+
+                adaptadorRvDatos.viewModelVPilotosViewModel.myResponse.observe(context as LifecycleOwner){ piloto ->
+                    piloto?.let{
+                        AlertDialog.Builder(context)
+                            .setTitle("Detalles del piloto")
+                            .setMessage("Nombre: ${piloto.nombre}\n" +
+                                    "Edad: ${piloto.edad}\n" +
+                                    "Experiencia: ${piloto.experiencia}\n" +
+                                    "Nivel: ${piloto.nivel}\n" +
+                                    "Foto: ${piloto.foto}")
+                            .setPositiveButton("Aceptar"){dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show() // muestra el dialogo
+                    }
+                }
+
+
+
+            }
+
 
             itemView.setOnLongClickListener(View.OnLongClickListener {
                 Log.e("Izaskun", "has pulsado el boton de ${user.nombre}")
@@ -73,6 +102,10 @@ class AdaptadorRvPilotos (
                 true
             })
         }
+
+
+
+
     }
 
 

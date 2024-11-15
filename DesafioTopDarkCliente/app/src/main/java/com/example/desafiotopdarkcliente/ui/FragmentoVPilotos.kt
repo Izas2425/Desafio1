@@ -87,6 +87,8 @@ class FragmentoVPilotos : Fragment() {
             customAdapter.notifyDataSetChanged()
         }
 
+
+
         val fabAddPiloto: FloatingActionButton = view.findViewById(R.id.fabAddPiloto)
         fabAddPiloto.setOnClickListener{
             findNavController().navigate(R.id.action_VPilotos_to_AddPiloto)

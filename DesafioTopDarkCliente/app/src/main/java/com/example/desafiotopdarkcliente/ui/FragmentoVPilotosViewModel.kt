@@ -45,6 +45,21 @@ class FragmentoVPilotosViewModel : ViewModel() {
     }
 
 
+    fun getUsuarioVM(id: Int) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<Usuario> = UserNetwork.retrofit.getUsuario(id)
+
+            if (response.isSuccessful) {
+                _myResponse.value = response.body()
+            } else {
+                _myResponse.value = null
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
 
     fun deletePilotoVM(piloto: MostrarPiloto){
         viewModelScope.launch {
