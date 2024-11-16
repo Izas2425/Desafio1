@@ -5,29 +5,29 @@ import java.io.Serializable
 
 data class Usuario(
     @SerializedName("id")
-    val id: Int? = null,
+    var id: Int? = null,
 
     @SerializedName("nombre")
-    val nombre:String? = null,
+    var nombre:String? = null,
 
     @SerializedName("password")
-    val password:String? = null,
+    var password:String? = null,
 
     @SerializedName("role")
-    val role:String? = null,
+    var role:String? = null,
 
     @SerializedName("edad")
-    val edad:Int? = null,
+    var edad:Int? = null,
 
     @SerializedName("experiencia")
-    val experiencia:Int? = null,
+    var experiencia:Int? = null,
 
     @SerializedName("nivel")
-    val nivel:String? = null,
+    var nivel:String? = null,
 
     @SerializedName("activado")
-    val activado:Int? = null,
+    var activado:Int? = null,
 
     @SerializedName("foto")
-    val foto:String? = null
+    var foto:String? = null
 ): Serializable

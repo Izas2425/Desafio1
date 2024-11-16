@@ -6,117 +6,113 @@
     android:layout_height="match_parent"
     tools:context=".ui.FragmentoAddPiloto" >
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="440dp"
-        android:layout_height="736dp"
-        android:src="@drawable/piloto_fondo_vader"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="440dp"
+        android:layout_height="810dp"
+        android:src="@drawable/fondo_add_piloto"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="-3dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfNombrePiloto"
-        android:layout_width="257dp"
-        android:layout_height="72dp"
+        android:layout_width="305dp"
+        android:layout_height="67dp"
         android:hint="Nombre"
-        app:hintTextColor="@color/black"
-
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-
-        app:layout_constraintVertical_bias="0.06">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.128">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtNombrePiloto"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
+            android:layout_height="54dp"
             android:textColor="@color/white"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfEdadPiloto"
-        android:layout_width="257dp"
-        android:layout_height="72dp"
+        android:layout_width="99dp"
+        android:layout_height="74dp"
         android:hint="Edad"
-        app:hintTextColor="@color/black"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.233">
+        app:layout_constraintTop_toBottomOf="@+id/tfNombrePiloto"
+        app:layout_constraintVertical_bias="0.062">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtEdadPiloto"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
-
+            android:layout_height="62dp"
+            android:textColor="@color/white"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfExperienciaPiloto"
-        android:layout_width="257dp"
-        android:layout_height="72dp"
+        android:layout_width="124dp"
+        android:layout_height="70dp"
         android:hint="Experiencia"
-        app:hintTextColor="@color/black"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.424">
+        app:layout_constraintTop_toBottomOf="@+id/tfNombrePiloto"
+        app:layout_constraintVertical_bias="0.062">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtExperienciaPiloto"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
-
+            android:layout_height="51dp"
+            android:textColor="@color/white"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfpassworProvisionalPiloto"
-        android:layout_width="257dp"
-        android:layout_height="72dp"
+        android:layout_width="323dp"
+        android:layout_height="74dp"
         android:hint="Password provisional"
-        app:hintTextColor="@color/black"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.61">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.485">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPasswordProvisionalPiloto"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-
-            android:textStyle="bold" />
+            android:layout_width="309dp"
+            android:layout_height="54dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="321dp"
+            tools:layout_editor_absoluteY="762dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/imgCamara"
-        android:layout_width="85dp"
-        android:layout_height="54dp"
+        android:layout_width="78dp"
+        android:layout_height="51dp"
         android:src="@drawable/camara_fotos"
         app:hintTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tfpassworProvisionalPiloto"
+        app:layout_constraintVertical_bias="0.01" />
 
     <Button
         android:id="@+id/btnAceptarAddPiloto"
@@ -125,6 +121,7 @@
         android:layout_height="57dp"
         android:text="Aceptar"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
@@ -138,13 +135,14 @@
         android:layout_width="120dp"
         android:layout_height="57dp"
         android:text="Cancelar"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintHorizontal_bias="0.871"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
+        app:layout_constraintVertical_bias="0.917" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
