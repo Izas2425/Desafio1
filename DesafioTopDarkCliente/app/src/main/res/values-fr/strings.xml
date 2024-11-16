@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DesafioTopDarkCliente</string>
+    <string name="cajaUsuario">Utilisateur</string>
+    <string name="cajaContraseña">Mot de passe</string>
+    <string name="botonLogin">Se connecter</string>
+    <string name="barraNavBotonPilotos">Pilotes</string>
+    <string name="barraNavBotonNaves">Navires</string>
+    <string name="barraNavBotonMisiones">Missions</string>
+    <string name="botonDetalle">Détail</string>
+    <string name="barraRegistrarNuevoPiloto">enregistrer un nouveau pilote</string>
+    <string name="cajaNombre">Nom</string>
+    <string name="cajaEdad">Âge</string>
+    <string name="cajaExperiencia">Expérience</string>
+    <string name="cajaPasswordProvisional">Mot de passe temporaire</string>
+    <string name="diagoloDetalleTitulo">Détails du pilote</string>
+    <string name="detallesNivel">Niveau</string>
+    <string name="detallesFoto">Photo</string>
+    <string name="botonAceptar">Accepter</string>
+    <string name="botonCancelar">Annuler</string>
+</resources>

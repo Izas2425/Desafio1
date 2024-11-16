@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navegation_fragmento_v_pilotos"
-        android:title="Pilotos"
+        android:title="@string/barraNavBotonPilotos"
 
         />
 
     <item
         android:id="@+id/navegation_fragmento_v_naves"
 
-        android:title="Naves"/>
+        android:title="@string/barraNavBotonNaves"/>
 
     <item
         android:id="@+id/navegation_fragmento_v_misiones"
-        android:title="Misiones"/>
+        android:title="@string/barraNavBotonMisiones"/>
 
 </menu>

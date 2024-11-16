@@ -33,6 +33,6 @@
     <fragment
         android:id="@+id/navegation_fragmento_add_piloto"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddPiloto"
-        android:label="Registrar nuevo piloto"
+        android:label="@string/barraRegistrarNuevoPiloto"
         tools:layout="@layout/fragment_fragmento_add_piloto"/>
 </navigation>

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">DesafioTopDarkCliente</string>
+    <string name="cajaUsuario">Usuario</string>
+    <string name="cajaContraseña">Contraseña</string>
+    <string name="botonLogin">Login</string>
+    <string name="barraNavBotonPilotos">Pilotos</string>
+    <string name="barraNavBotonNaves">Naves</string>
+    <string name="barraNavBotonMisiones">Misiones</string>
+    <string name="botonDetalle">Detalle</string>
+    <string name="barraRegistrarNuevoPiloto">Registrar nuevo piloto</string>
+    <string name="cajaNombre">Nombre</string>
+    <string name="cajaEdad">Edad</string>
+    <string name="cajaExperiencia">Experiencia</string>
+    <string name="cajaPasswordProvisional">Pasword provisional</string>
+    <string name="diagoloDetalleTitulo">Detalles del piloto</string>
+    <string name="detallesNivel">Nivel</string>
+    <string name="detallesFoto">Foto</string>
+    <string name="botonAceptar">Aceptar</string>
+    <string name="botonCancelar">Cancelar</string>
 </resources>
