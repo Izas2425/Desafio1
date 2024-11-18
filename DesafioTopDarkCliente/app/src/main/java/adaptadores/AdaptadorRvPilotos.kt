@@ -61,6 +61,8 @@ class AdaptadorRvPilotos (
             nivelPiloto.text = user.nivel
 
             btnDetalleP.setOnClickListener {
+
+
                adaptadorRvDatos.viewModelVPilotosViewModel.getUsuarioVM(user.id!!)
 
                 adaptadorRvDatos.viewModelVPilotosViewModel.myResponse.observe(context as LifecycleOwner){ piloto ->
@@ -78,9 +80,6 @@ class AdaptadorRvPilotos (
                             .show() // muestra el dialogo
                     }
                 }
-
-
-
             }
 
 

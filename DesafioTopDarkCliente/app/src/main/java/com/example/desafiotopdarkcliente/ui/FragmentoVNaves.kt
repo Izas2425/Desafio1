@@ -90,7 +90,7 @@ class FragmentoVNaves : Fragment() {
     private fun setupRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         binding.listaNavesRecycler.layoutManager = linearLayoutManager
-        //Le pasamos también el viewModelMain para poder pasar datos desde el fragmento B a la activity.
+        //Le pasamos también el viewModel de naves  para poder pasar datos desde el fragmento B a la activity.
         customAdapter = AdaptadorRvNaves( datosRepresentar, requireContext(), fragmentoVNavesViewModel )
         binding.listaNavesRecycler.adapter = customAdapter
     }

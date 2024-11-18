@@ -21,7 +21,7 @@ interface NaveAPI {
     @POST("registrarNave")
     suspend fun addNave(@Body userData: Nave): Response<Boolean>
 
-    @DELETE("borrarNave/{Matricula}")
+    @DELETE("borrarNave/{matricula}")
     suspend fun deleteNave(@Path("matricula") matricula: String): Response<Boolean>
 
     @PUT("modificarNave/{matricula}")
