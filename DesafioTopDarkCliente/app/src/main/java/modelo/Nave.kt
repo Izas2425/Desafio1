@@ -5,18 +5,18 @@ import java.io.Serializable
 
 data class Nave(
     @SerializedName("matricula")
-    val matricula: String? = null,
+    var matricula: String? = null,
 
     @SerializedName("foto")
-    val foto:String? = null,
+    var foto:String? = null,
 
     @SerializedName("tipo")
-    val tipo:String? = null,
+    var tipo:String? = null,
 
     @SerializedName("carga")
-    val carga:Boolean? = null,
+    var carga:Boolean = false,
 
     @SerializedName("pasajeros")
-    val pasajeros:Boolean? = null,
+    var pasajeros:Boolean = false,
 
 ): Serializable

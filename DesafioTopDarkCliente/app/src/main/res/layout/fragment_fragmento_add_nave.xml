@@ -23,19 +23,19 @@
         android:layout_width="305dp"
         android:layout_height="67dp"
         android:hint="Matrícula"
-        android:textColorHint="@color/white"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128">
+        app:layout_constraintVertical_bias="0.094">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtMatriculaNave"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:textColor="@color/white"
+
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,22 +45,23 @@
         android:layout_height="37dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
+        app:layout_constraintHorizontal_bias="0.676"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.304" />
 
     <TextView
         android:id="@+id/tvTipoNave"
         android:layout_width="326dp"
         android:layout_height="77dp"
         android:text="Tipo Nave"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.276" />
 
     <CheckBox
         android:id="@+id/cbCargaN"
@@ -69,10 +70,10 @@
         android:text="Carga"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <CheckBox
         android:id="@+id/cbPasajerosN"
@@ -81,10 +82,10 @@
         android:text="Pasajeros"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <Button
         android:id="@+id/btAceptarAddN"
@@ -93,10 +94,10 @@
         android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fondoAddNave"
-        app:layout_constraintHorizontal_bias="0.798"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="@+id/fondoAddNave"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintVertical_bias="0.932" />
 
     <Button
         android:id="@+id/btnCancelarAddN"
@@ -105,10 +106,10 @@
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fondoAddNave"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintVertical_bias="0.932" />
 
     <ImageView
         android:id="@+id/imCamaraAddN"
@@ -117,19 +118,20 @@
         android:src="@drawable/camara_fotos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fondoAddNave"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.634" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="311dp"
-        android:layout_height="176dp"
+        android:id="@+id/imTipoNave"
+        android:layout_width="167dp"
+        android:layout_height="164dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fondoAddNave"
-        app:layout_constraintVertical_bias="0.696"
+        app:layout_constraintVertical_bias="0.778"
         tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

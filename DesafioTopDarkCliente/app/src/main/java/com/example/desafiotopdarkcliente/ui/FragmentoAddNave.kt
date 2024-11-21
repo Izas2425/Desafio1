@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoAddNaveBinding
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoAddPilotoBinding
+import modelo.Nave
 
 class FragmentoAddNave : Fragment() {
 
@@ -31,18 +32,21 @@ class FragmentoAddNave : Fragment() {
     private lateinit var bitmap: Bitmap
     var albumName = "NavesAlbum"
 
-    private val fragmentoAddNaveViewModel: FragmentoVNavesViewModel by viewModels()
+    private lateinit var nave: Nave
+
+    var pasajeros: Boolean = false
+    var carga: Boolean= false
+
+    private val fragmentoAddNaveViewModel: FragmentoAddNaveViewModel by viewModels()
 
     companion object {
         fun newInstance() = FragmentoAddNave()
     }
 
-    private val viewModel: FragmentoAddNaveViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Use the ViewModel
+
     }
 
     override fun onCreateView(
@@ -70,6 +74,9 @@ class FragmentoAddNave : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        nave = Nave()
+
         // Para el spinner
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -85,6 +92,22 @@ class FragmentoAddNave : Fragment() {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 tipoNave = selectedItem
                 Toast.makeText(requireContext(), "Seleccionaste: $selectedItem", Toast.LENGTH_SHORT).show()
+
+                if (tipoNave == "Combate"){
+                    binding.cbCargaN.isEnabled = false
+                    binding.cbPasajerosN.isEnabled = false
+                    binding.imTipoNave.setImageResource((R.drawable.nave_combate))
+                }
+                else{
+                    binding.cbCargaN.isEnabled = true
+                    binding.cbPasajerosN.isEnabled = true
+                    if(tipoNave == "Vuelo"){
+                        binding.imTipoNave.setImageResource((R.drawable.nave_vuelo))
+                    }
+                    else{
+                        binding.imTipoNave.setImageResource(R.drawable.nava_bombadeo)
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -94,6 +117,49 @@ class FragmentoAddNave : Fragment() {
 
         binding.imCamaraAddN.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+
+        binding.cbCargaN.setOnClickListener {
+
+            carga = binding.cbCargaN.isChecked
+            nave.carga = carga
+
+        }
+
+        binding.cbPasajerosN.setOnClickListener {
+
+            pasajeros = binding.cbPasajerosN.isChecked
+            nave.pasajeros = pasajeros
+
+        }
+
+        binding.btAceptarAddN.setOnClickListener {
+
+
+            // Se recogen los datos
+            val matricula = binding.tfMatriculaNave.editText?.text.toString()
+
+           // Comprueba que la matricula esté rellena
+            if(binding.tfMatriculaNave.editText?.text.toString().isEmpty()){
+                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                nave.matricula = matricula
+                nave.tipo = tipoNave
+                nave.foto = ""
+
+                Log.e("Izaskun", "matricula ${nave.matricula}, tipo ${nave.tipo}, carga ${nave.carga}, pasajeros ${nave.pasajeros}")
+
+                fragmentoAddNaveViewModel.addNavVM(nave)
+
+                //Vuelve al fragmento anterior
+                requireActivity().onBackPressed()
+             }
+        }
+
+        binding.btnCancelarAddN.setOnClickListener {
+            //Vuelve al fragmento anterior
+            requireActivity().onBackPressed()
         }
 
     }
