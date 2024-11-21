@@ -10,6 +10,7 @@
         android:id="@+id/imFondoNavesV"
         android:layout_width="418dp"
         android:layout_height="742dp"
+        android:alpha="0.5"
         android:src="@drawable/fondo_naves_vader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +31,7 @@
         app:layout_constraintVertical_bias="0.962" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fabAddNave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

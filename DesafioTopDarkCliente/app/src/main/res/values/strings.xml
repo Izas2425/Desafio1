@@ -17,4 +17,12 @@
     <string name="detallesFoto">Foto</string>
     <string name="botonAceptar">Aceptar</string>
     <string name="botonCancelar">Cancelar</string>
+    <string name="dialogopiloto">Detalles del piloto</string>
+    <string-array name="tipo_naves">
+        <item>Vuelo</item>
+        <item>Bombardeo</item>
+        <item>Combate</item>
+    </string-array>
+
+
 </resources>

@@ -18,4 +18,5 @@
     <string name="detallesFoto">Photo</string>
     <string name="botonAceptar">Accept</string>
     <string name="botonCancelar">Cancel</string>
+    <string name="dialogopiloto">Details of the pilot</string>
 </resources>

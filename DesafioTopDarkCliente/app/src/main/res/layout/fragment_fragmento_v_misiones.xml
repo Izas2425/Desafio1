@@ -10,6 +10,7 @@
         android:id="@+id/imFondoMisionesV"
         android:layout_width="412dp"
         android:layout_height="734dp"
+        android:alpha="0.5"
         android:src="@drawable/fondo_misiones_vader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -37,6 +37,7 @@ class Vader : AppCompatActivity() {
         setSupportActionBar(binding.tbVader)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
         // Cuando se pinche vuelva hacia atras
         binding.tbVader.setNavigationOnClickListener {
             val navController = findNavController(R.id.miFragContainer)

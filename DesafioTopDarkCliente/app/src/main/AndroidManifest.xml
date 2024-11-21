@@ -16,6 +16,9 @@
         android:theme="@style/Theme.DesafioTopDarkCliente"
         tools:targetApi="31">
         <activity
+            android:name=".Piloto"
+            android:exported="false" />
+        <activity
             android:name=".Vader"
             android:exported="false" />
         <activity

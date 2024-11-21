@@ -14,6 +14,9 @@ class FragmentoVPilotosViewModel : ViewModel() {
     private val _myResponseList = MutableLiveData<List<MostrarPiloto>>()
     val myResponseList: MutableLiveData<List<MostrarPiloto>> get() = _myResponseList
 
+    private val _myResponseListP = MutableLiveData<List<Usuario>>()
+    val myResponseListP: MutableLiveData<List<Usuario>> get() = _myResponseListP
+
     private val _myResponse = MutableLiveData<Usuario>()
     val myResponse: LiveData<Usuario> get() = _myResponse
 
@@ -68,6 +71,7 @@ class FragmentoVPilotosViewModel : ViewModel() {
             if (response.isSuccessful) {
                 _resOperacion.value = response.body()
                 _errorCode.value = response.code()
+                getPilotosVM()
 
             } else {
                 _resOperacion.value = false
@@ -75,5 +79,20 @@ class FragmentoVPilotosViewModel : ViewModel() {
             }
         }
     }
+    fun getPilotosVM() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<MutableList<Usuario>> = UserNetwork.retrofit.getPilotos()
+
+            if (response.isSuccessful) {
+                _myResponseListP.value = response.body()
+            } else {
+                _myResponseListP.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
 
 }

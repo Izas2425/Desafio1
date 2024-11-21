@@ -49,8 +49,8 @@ class FragmentoVPilotos : Fragment() {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        mainViewModel.getPilotosVM()
-        mainViewModel.myResponseList.observe(this) {pilotos ->
+        fragmentoVPilotosViewModel.getPilotosVM()
+        fragmentoVPilotosViewModel.myResponseListP.observe(this) {pilotos ->
             if (!pilotos.isEmpty()){
                 datosRepresentar.clear()
                 for (user in pilotos) {

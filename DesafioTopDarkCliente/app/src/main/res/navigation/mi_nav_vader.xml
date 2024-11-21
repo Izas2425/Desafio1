@@ -14,7 +14,12 @@
         android:id="@+id/navegation_fragmento_v_naves"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoVNaves"
         android:label="fragment_fragmento_v_naves"
-        tools:layout="@layout/fragment_fragmento_v_naves" />
+        tools:layout="@layout/fragment_fragmento_v_naves" >
+            <action
+                android:id="@+id/action_VNaves_to_AddNave"
+                app:destination="@id/navegation_fragmento_add_nave"/>
+
+        </fragment>
     <fragment
         android:id="@+id/navegation_fragmento_v_pilotos"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoVPilotos"
@@ -35,4 +40,11 @@
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddPiloto"
         android:label="@string/barraRegistrarNuevoPiloto"
         tools:layout="@layout/fragment_fragmento_add_piloto"/>
+
+    <fragment
+        android:id="@+id/navegation_fragmento_add_nave"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddNave"
+        android:label="Regristrar nueva nave"
+        tools:layout="@layout/fragment_fragmento_add_nave"
+        />
 </navigation>

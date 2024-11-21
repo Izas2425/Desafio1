@@ -16,6 +16,9 @@ class FragmentoVNavesViewModel : ViewModel() {
     private val _myResponseList = MutableLiveData<List<MostrarNave>>()
     val myResponseList: MutableLiveData<List<MostrarNave>> get() = _myResponseList
 
+    private val _myResponseListN = MutableLiveData<List<Nave>>()
+    val myResponseListN: MutableLiveData<List<Nave>> get() = _myResponseListN
+
     private val _myResponse = MutableLiveData<Nave>()
     val myResponse: LiveData<Nave> get() = _myResponse
 
@@ -51,7 +54,7 @@ class FragmentoVNavesViewModel : ViewModel() {
             if (response.isSuccessful) {
                 _resOperacion.value = response.body()
                 _errorCode.value = response.code()
-               // obtenerTodasLasNaves()
+              getNavesVM()
             } else {
                 _resOperacion.value = false
                 _errorCode.value = response.code()
@@ -73,6 +76,20 @@ class FragmentoVNavesViewModel : ViewModel() {
         }
     }
 
+    fun getNavesVM() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<MutableList<Nave>> = UserNetwork.retrofitNave.getNaves()
+
+            if (response.isSuccessful) {
+                _myResponseListN.value = response.body()
+            } else {
+                _myResponseListN.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
 
 
     fun limpiarRespuesta (){

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.NaveViewModel
 import api.UsuarioViewModel
@@ -17,6 +18,7 @@ import com.example.desafiotopdarkcliente.MainViewModel
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVNavesBinding
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVPilotosBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import modelo.MostrarNave
 import modelo.MostrarPiloto
 
@@ -46,8 +48,8 @@ class FragmentoVNaves : Fragment() {
 
         naveViewModel = ViewModelProvider(this)[NaveViewModel::class.java]
 
-        naveViewModel.getNavesVM()
-        naveViewModel.myResponseList.observe(this){naves ->
+        fragmentoVNavesViewModel.getNavesVM()
+        fragmentoVNavesViewModel.myResponseListN.observe(this){naves ->
             if(!naves.isEmpty()){
                 datosRepresentar.clear()
                 for (nav in naves){
@@ -80,6 +82,11 @@ class FragmentoVNaves : Fragment() {
             datosRepresentar.clear()
             datosRepresentar.addAll(listaNaves)
             customAdapter.notifyDataSetChanged()
+        }
+
+        val fabAddNave : FloatingActionButton = view.findViewById(R.id.fabAddNave)
+        fabAddNave.setOnClickListener {
+            findNavController().navigate(R.id.action_VNaves_to_AddNave)
         }
     }
 

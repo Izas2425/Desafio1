@@ -10,6 +10,7 @@
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="440dp"
+        android:alpha="0.5"
         android:layout_height="810dp"
         android:src="@drawable/fondo_add_piloto"
         tools:layout_editor_absoluteX="-3dp"
