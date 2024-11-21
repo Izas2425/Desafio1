@@ -4,6 +4,7 @@ import io.ktor.server.application.*
 import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import rutas.rutasMision
 import rutas.rutasNave
 import rutas.rutasUsuario
 
@@ -16,5 +17,6 @@ fun Application.configureRouting() {
         staticResources("/static", "static")
         rutasUsuario()
         rutasNave()
+        rutasMision()
     }
 }
