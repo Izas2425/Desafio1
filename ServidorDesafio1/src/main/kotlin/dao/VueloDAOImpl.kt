@@ -18,7 +18,7 @@ class VueloDAOImpl: VueloDAO {
         return false
     }
 
-    override fun obtenerporId(idmision: Int): Vuelo? {
+    override fun obtenerPorId(idmision: Int): Vuelo? {
         val sql = "SELECT * FROM vuelos WHERE idMision = ?"
         val connection = Database.getConnection()
         connection?.use {
