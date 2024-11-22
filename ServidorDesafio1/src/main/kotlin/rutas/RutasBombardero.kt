@@ -12,7 +12,7 @@ import modelo.Bombardero
 val bombarderoDAO: BombarderoDAO = BombarderoDAOImpl()
 
 fun Route.rutasBombardero(){
-    route("/listadoBombardero"){
+    route("/listadoBombarderos"){
         get{
             if (bombarderoDAO.obtenerTodos().isNotEmpty()) {
                 return@get call.respond(HttpStatusCode.OK, bombarderoDAO.obtenerTodos())

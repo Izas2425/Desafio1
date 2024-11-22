@@ -4,7 +4,7 @@ import modelo.Mision
 import modelo.Vuelo
 
 class VueloDAOImpl: VueloDAO {
-    override fun inserar(vuelo: Vuelo): Boolean {
+    override fun insertar(vuelo: Vuelo): Boolean {
         val sql = "INSERT INTO vuelos (idMision, duracion, carga, pasajeros) VALUES (?, ?, ?, ?)"
         val connection = Database.getConnection()
         connection?.use {

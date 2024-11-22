@@ -12,8 +12,8 @@ import modelo.Mision
 val misionDAO: MisionDAO = MisionDAOImpl()
 
 fun Route.rutasMision(){
-    route("/listadoMisiones"){
-        get{
+    route("/listadoMisiones") {
+        get {
             if (misionDAO.obtenerTodos().isNotEmpty()) {
                 return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerTodos())
             } else {
@@ -23,7 +23,8 @@ fun Route.rutasMision(){
 
         get("{idmision?}") {
 
-            val idmision = call.parameters["idmision"]?.toIntOrNull() ?: return@get call.respond(HttpStatusCode.BadRequest, null)
+            val idmision =
+                call.parameters["idmision"]?.toIntOrNull() ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
             // Llama a naveDAO.obtener(matricula) para buscar la nave por la matricula proporcionada.
             val mision = misionDAO.obtenerPorId(idmision) ?: return@get call.respond(HttpStatusCode.NotFound, null)
@@ -32,6 +33,19 @@ fun Route.rutasMision(){
             call.respond(HttpStatusCode.OK, mision)
         }
     }
+        route("/ultimoId"){
+            get{
+
+                val ultimoId = misionDAO.obtenerUltimoId()
+                if (ultimoId != null) {
+                    return@get call.respond(HttpStatusCode.OK, ultimoId)
+
+                }
+                return@get call.respond(HttpStatusCode.NotFound, null)
+            }
+        }
+
+
 
     route("/registrarMision") {
         post{

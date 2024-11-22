@@ -7,4 +7,5 @@ interface MisionDAO  {
     fun obtenerPorId(idmision: Int): Mision?
     fun eliminar(idMision: Int): Boolean
     fun obtenerTodos(): List<Mision>
+    fun obtenerUltimoId(): Int?
 }

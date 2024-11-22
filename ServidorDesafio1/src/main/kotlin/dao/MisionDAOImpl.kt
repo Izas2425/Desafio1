@@ -73,4 +73,20 @@ class MisionDAOImpl: MisionDAO {
         }
         return misiones
     }
+
+    override fun obtenerUltimoId(): Int? {
+        val sql = "SELECT MAX(idmision) AS ultimoId FROM misiones"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            val resultSet = statement.executeQuery()
+            if (resultSet.next()) {
+                return resultSet.getInt("ultimoId")
+            }
+
+        }
+        return null
+    }
+
+
 }
