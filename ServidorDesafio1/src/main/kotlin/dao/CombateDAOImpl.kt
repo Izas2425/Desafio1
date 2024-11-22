@@ -4,7 +4,7 @@ import modelo.Combate
 
 
 class CombateDAOImpl: CombateDAO {
-    override fun insert(combate: Combate): Boolean {
+    override fun insertar(combate: Combate): Boolean {
         val sql = "INSERT INTO combates (idMision, cazas) VALUES (?, ?)"
         val connection = Database.getConnection()
         connection?.use {
