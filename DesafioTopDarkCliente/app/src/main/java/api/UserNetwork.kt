@@ -21,4 +21,12 @@ object UserNetwork {
             .create(NaveAPI::class.java)
     }
 
+    val retrofitMision  by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url + ":" + Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MisionAPI::class.java)
+    }
+
 }
