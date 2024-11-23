@@ -80,23 +80,18 @@ class AdaptadorRvMisiones(
 
             itemView.setOnLongClickListener(View.OnLongClickListener {
 
-                adaptadorRvDatos.viewModelVMisionesViewModel.getMisionVM(mis.idmision!!)
-                adaptadorRvDatos.viewModelVMisionesViewModel.myResponseM.observe(context as LifecycleOwner){mision ->
+                adaptadorRvDatos.viewModelVMisionesViewModel.getMisionDeleteVM(mis.idmision!!)
+                adaptadorRvDatos.viewModelVMisionesViewModel.myResponseDelete.observe(context as LifecycleOwner){mision ->
                     mision?.let {
                         AlertDialog.Builder(context)
                             .setTitle("Aviso")
-                            .setMessage("¿Seguro que quiere eliminar a ${mis.idmision}")
+                            .setMessage("¿Seguro que quiere eliminar a ${mis.nombre}")
                             .setPositiveButton(
                                 "Si",
                                 DialogInterface.OnClickListener(function = { dialog: DialogInterface?, which: Int ->
                                     adaptadorRvDatos.viewModelVMisionesViewModel.deleteMisionVM(mis.idmision!!)
 
-                                    obtenerNaveYEliminarSegunTipo(
-                                        mision.matriculanave!!,
-                                        adaptadorRvDatos,
-                                        context,
-                                        mis.idmision!!
-                                    )
+                                    obtenerNaveYEliminarSegunTipo(mision.matriculanave!!, adaptadorRvDatos, context, mis.idmision!!)
                                     adaptadorRvDatos.notifyDataSetChanged()
                                 }))
                             .setNegativeButton("No", ({ dialog: DialogInterface, which: Int ->

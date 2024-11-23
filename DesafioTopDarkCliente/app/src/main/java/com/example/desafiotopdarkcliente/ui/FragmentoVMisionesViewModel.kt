@@ -28,6 +28,9 @@ class FragmentoVMisionesViewModel : ViewModel() {
     private val _myResponseB = MutableLiveData<Bombardero?>()
     val myResponseB: LiveData<Bombardero?> get() = _myResponseB
 
+    private val _myResponseDelete = MutableLiveData<Mision?>()
+    val myResponseDelete: LiveData<Mision?> get() = _myResponseDelete
+
     private val _myResponseListM = MutableLiveData<List<Mision>>()
     val myResponseListM: LiveData<List<Mision>> get() = _myResponseListM
 
@@ -58,6 +61,21 @@ class FragmentoVMisionesViewModel : ViewModel() {
                 _myResponseM.value = response.body()
             } else {
                 _myResponseM.value = null
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun getMisionDeleteVM(idmision: Int) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<Mision> = UserNetwork.retrofitMision.getMision(idmision)
+
+            if (response.isSuccessful) {
+                _myResponseDelete.value = response.body()
+            } else {
+                _myResponseDelete.value = null
                 _errorCode.value = response.code()
             }
             _isLoading.value = false

@@ -13,8 +13,13 @@ import retrofit2.Response
 
 class MisionViewModel : ViewModel(){
 
+    private val _myResponseDelete = MutableLiveData<Mision?>()
+    val myResponse: LiveData<Mision?> get() = _myResponseDelete
+
     private val _myResponseM = MutableLiveData<Mision?>()
     val myResponseM: LiveData<Mision?> get() = _myResponseM
+
+
 
     private val _myResponseV = MutableLiveData<Vuelo?>()
     val myResponseV: LiveData<Vuelo?> get() = _myResponseV
