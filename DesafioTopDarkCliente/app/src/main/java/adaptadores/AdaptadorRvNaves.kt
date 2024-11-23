@@ -94,7 +94,7 @@ class AdaptadorRvNaves (
 
                 AlertDialog.Builder(context)
                     .setTitle("Aviso")
-                    .setMessage("¿Seguro que quieres eliminar a ${nav.matricula}")
+                    .setMessage("¿Seguro que quiere eliminar a ${nav.matricula}")
                     .setPositiveButton("Si", DialogInterface.OnClickListener(function = {dialog: DialogInterface?, which: Int ->
 
                         adaptadorRvDatos.viewModelVNavesViewModel.deleteNavVM(nav.matricula!!)

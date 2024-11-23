@@ -55,7 +55,7 @@ class FragmentoVNaves : Fragment() {
                 for (nav in naves){
                     datosRepresentar.add(MostrarNave(nav.matricula.toString(), nav.tipo.toString()))
                 }
-                customAdapter.updateData((datosRepresentar))
+                customAdapter.updateData(datosRepresentar)
             }
         }
 

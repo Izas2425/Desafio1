@@ -53,14 +53,14 @@ interface MisionAPI {
     suspend fun addBombardero(@Body userData: Bombardero): Response<Boolean>
 
     @DELETE("borrarMision/{idmision}")
-    suspend fun deleteMision(@Path("idmision") idmision: Int, @Body userData: Mision):Response<Boolean>
+    suspend fun deleteMision(@Path("idmision") idmision: Int):Response<Boolean>
 
     @DELETE("borrarVuelo/{ídmision}")
-    suspend fun deleteVuelo(@Path("idmision") idmision: Int, @Body userData: Vuelo):Response<Boolean>
+    suspend fun deleteVuelo(@Path("idmision") idmision: Int):Response<Boolean>
 
     @DELETE("borrarCombate({idmision")
-    suspend fun deleteCombate(@Path("idmision") idmision: Int, @Body userData: Combate): Response<Boolean>
+    suspend fun deleteCombate(@Path("idmision") idmision: Int): Response<Boolean>
 
     @DELETE("borrarBombardero{idmision}")
-    suspend fun deleteBombardero(@Path("idmision") idmision: Int, @Body userData: Bombardero): Response<Boolean>
+    suspend fun deleteBombardero(@Path("idmision") idmision: Int): Response<Boolean>
 }

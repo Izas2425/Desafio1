@@ -1,20 +1,17 @@
-package com.example.desafiotopdarkcliente.ui
+package api
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import api.UserNetwork
 import kotlinx.coroutines.launch
 import modelo.Bombardero
 import modelo.Combate
 import modelo.Mision
-import modelo.Nave
 import modelo.Vuelo
 import retrofit2.Response
 
-
-class FragmentoVMisionesViewModel : ViewModel() {
+class MisionViewModel : ViewModel(){
 
     private val _myResponseM = MutableLiveData<Mision?>()
     val myResponseM: LiveData<Mision?> get() = _myResponseM
@@ -49,6 +46,7 @@ class FragmentoVMisionesViewModel : ViewModel() {
     private val _errorCode = MutableLiveData<Int?>()
     val errorCode: LiveData<Int?> get() = _errorCode
 
+
     fun getMisionVM(idmision: Int) {
         viewModelScope.launch {
             _isLoading.value = true
@@ -64,6 +62,52 @@ class FragmentoVMisionesViewModel : ViewModel() {
         }
     }
 
+    fun getVueloVM(idmision: Int) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<Vuelo> = UserNetwork.retrofitMision.getVuelo(idmision)
+
+            if (response.isSuccessful) {
+                _myResponseV.value = response.body()
+            } else {
+                _myResponseV.value = null
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun getCombateVM(idmision: Int) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<Combate> = UserNetwork.retrofitMision.getCombate(idmision)
+
+            if (response.isSuccessful) {
+                _myResponseC.value = response.body()
+            } else {
+                _myResponseC.value = null
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun getBombarderoVM(idmision: Int) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<Bombardero> = UserNetwork.retrofitMision.getBombardero(idmision)
+
+            if (response.isSuccessful) {
+                _myResponseB.value = response.body()
+            } else {
+                _myResponseB.value = null
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+
     fun getMisionesVM() {
         viewModelScope.launch {
             _isLoading.value = true
@@ -76,6 +120,111 @@ class FragmentoVMisionesViewModel : ViewModel() {
                 _errorCode.value = response.code()
             }
             _isLoading.value = false
+        }
+    }
+
+    fun getVuelosVM() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<MutableList<Vuelo>> = UserNetwork.retrofitMision.getVuelos()
+
+            if (response.isSuccessful) {
+                _myResponseListV.value = response.body()
+            } else {
+                _myResponseListV.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun getCombatesVM() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<MutableList<Combate>> = UserNetwork.retrofitMision.getCombates()
+
+            if (response.isSuccessful) {
+                _myResponseListC.value = response.body()
+            } else {
+                _myResponseListC.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun getBombarderosVM() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<MutableList<Bombardero>> = UserNetwork.retrofitMision.getBombarderos()
+
+            if (response.isSuccessful) {
+                _myResponseListB.value = response.body()
+            } else {
+                _myResponseListB.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun addMisionVM(mision: Mision) {
+        viewModelScope.launch {
+            val response: Response<Boolean> = UserNetwork.retrofitMision.addMision(mision)
+
+            if (response.isSuccessful) {
+                _resOperacion.value = response.body()
+                _errorCode.value = response.code()
+                obtenerTodasLasMisiones()
+            } else {
+                _resOperacion.value = false
+                _errorCode.value = response.code()
+            }
+        }
+    }
+
+    fun addVueloVM(vuelo: Vuelo) {
+        viewModelScope.launch {
+            val response: Response<Boolean> = UserNetwork.retrofitMision.addVuelo(vuelo)
+
+            if (response.isSuccessful) {
+                _resOperacion.value = response.body()
+                _errorCode.value = response.code()
+                obtenerTodosLosVuelos()
+            } else {
+                _resOperacion.value = false
+                _errorCode.value = response.code()
+            }
+        }
+    }
+
+    fun addCombateVM(combate: Combate) {
+        viewModelScope.launch {
+            val response: Response<Boolean> = UserNetwork.retrofitMision.addCombate(combate)
+
+            if (response.isSuccessful) {
+                _resOperacion.value = response.body()
+                _errorCode.value = response.code()
+                obtenerTodosLosCombates()
+            } else {
+                _resOperacion.value = false
+                _errorCode.value = response.code()
+            }
+        }
+    }
+
+    fun addBombarderoVM(bombardero: Bombardero) {
+        viewModelScope.launch {
+            val response: Response<Boolean> = UserNetwork.retrofitMision.addBombardero(bombardero)
+
+            if (response.isSuccessful) {
+                _resOperacion.value = response.body()
+                _errorCode.value = response.code()
+                obtenerTodosLosBombarderos()
+            } else {
+                _resOperacion.value = false
+                _errorCode.value = response.code()
+            }
         }
     }
 
@@ -164,5 +313,24 @@ class FragmentoVMisionesViewModel : ViewModel() {
         }
     }
 
+    fun limpiarRespuestaM (){
+        _myResponseM.value = null
+    }
+
+    fun limpiarRespuestaV (){
+        _myResponseV.value = null
+    }
+
+    fun limpiarRespuestaC (){
+        _myResponseC.value = null
+    }
+
+    fun limpiarRespuestaB (){
+        _myResponseB.value = null
+    }
+
+    fun limpiarError(){
+        _errorCode.value = null
+    }
 
 }
