@@ -33,8 +33,12 @@
         android:id="@+id/navegation_fragmento_v_misiones"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoVMisiones"
         android:label="fragment_fragmento_v_misiones"
-        tools:layout="@layout/fragment_fragmento_v_misiones" />
-
+        tools:layout="@layout/fragment_fragmento_v_misiones" >
+        <action
+            android:id="@+id/action_VMisiones_to_AddMision"
+            app:destination="@id/navegation_fragmento_add_mision"
+            />
+    </fragment>
     <fragment
         android:id="@+id/navegation_fragmento_add_piloto"
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddPiloto"
@@ -46,5 +50,12 @@
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddNave"
         android:label="Regristrar nueva nave"
         tools:layout="@layout/fragment_fragmento_add_nave"
+        />
+
+    <fragment
+        android:id="@+id/navegation_fragmento_add_mision"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddMision"
+        android:label="Registrar nueva misión"
+        tools:layout="@layout/fragment_fragmento_add_mision"
         />
 </navigation>

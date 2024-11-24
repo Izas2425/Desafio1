@@ -10,11 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.MisionViewModel
 import api.NaveViewModel
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoVMisionesBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import modelo.MostrarMision
 
 class FragmentoVMisiones : Fragment() {
@@ -72,6 +74,17 @@ class FragmentoVMisiones : Fragment() {
 
         // Inicializa el RecyclerView y el adaptador
         setupRecyclerView()
+
+        fragmentoVMisionesViewModel.myResponseList.observe(viewLifecycleOwner){ listaMisiones ->
+            datosRepresentar.clear()
+            datosRepresentar.add(listaMisiones)
+            customAdapter.notifyDataSetChanged()
+        }
+
+        val fabAddMision: FloatingActionButton = view.findViewById(R.id.fabAddMision)
+        fabAddMision.setOnClickListener {
+            findNavController().navigate(R.id.action_VMisiones_to_AddMision)
+        }
     }
 
     private fun setupRecyclerView() {

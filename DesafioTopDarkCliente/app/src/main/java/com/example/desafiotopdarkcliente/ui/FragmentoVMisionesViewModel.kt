@@ -9,12 +9,16 @@ import kotlinx.coroutines.launch
 import modelo.Bombardero
 import modelo.Combate
 import modelo.Mision
+import modelo.MostrarMision
 import modelo.Nave
 import modelo.Vuelo
 import retrofit2.Response
 
 
 class FragmentoVMisionesViewModel : ViewModel() {
+
+    private val _myResponseList = MutableLiveData<MostrarMision>()
+    val myResponseList: LiveData<MostrarMision> get() = _myResponseList
 
     private val _myResponseM = MutableLiveData<Mision?>()
     val myResponseM: LiveData<Mision?> get() = _myResponseM

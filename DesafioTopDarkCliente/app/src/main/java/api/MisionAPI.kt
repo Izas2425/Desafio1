@@ -55,12 +55,12 @@ interface MisionAPI {
     @DELETE("borrarMision/{idmision}")
     suspend fun deleteMision(@Path("idmision") idmision: Int):Response<Boolean>
 
-    @DELETE("borrarVuelo/{ídmision}")
+    @DELETE("borrarVuelo/{idmision}")
     suspend fun deleteVuelo(@Path("idmision") idmision: Int):Response<Boolean>
 
-    @DELETE("borrarCombate({idmision")
+    @DELETE("borrarCombate/{idmision")
     suspend fun deleteCombate(@Path("idmision") idmision: Int): Response<Boolean>
 
-    @DELETE("borrarBombardero{idmision}")
+    @DELETE("borrarBombardero/{idmision}")
     suspend fun deleteBombardero(@Path("idmision") idmision: Int): Response<Boolean>
 }

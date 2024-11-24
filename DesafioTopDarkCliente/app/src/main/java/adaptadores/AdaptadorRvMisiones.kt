@@ -98,13 +98,10 @@ class AdaptadorRvMisiones(
 
                             }))
                             .show()
-
                     }
                 }
                 true
             })
-
-
         }
 
         fun obtenerNaveYEliminarSegunTipo(
