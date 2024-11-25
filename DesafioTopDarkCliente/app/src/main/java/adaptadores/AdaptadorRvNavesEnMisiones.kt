@@ -28,6 +28,8 @@ class AdaptadorRvNavesEnMisiones (
         companion object{
             var seleccionado: Int = -1
         }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_card_nave, parent, false)
         val viewHolder = adaptadores.AdaptadorRvNavesEnMisiones.ViewHolder(vista)
@@ -85,9 +87,12 @@ class AdaptadorRvNavesEnMisiones (
                 else{
                     AdaptadorRvNavesEnMisiones.seleccionado = pos
                     adaptadorRvDatos.viewModelNavesEnMisiones.naveSeleccionada.value = nav
+
                 }
 
                adaptadorRvDatos.notifyDataSetChanged()
+
+
             }
 
             btnDetalleN.setOnClickListener {
@@ -120,6 +125,8 @@ class AdaptadorRvNavesEnMisiones (
                     }
                 }
             }
+
+
         }
 
     }

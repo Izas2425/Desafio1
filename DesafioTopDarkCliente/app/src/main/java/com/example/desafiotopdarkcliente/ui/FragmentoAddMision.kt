@@ -2,6 +2,7 @@ package com.example.desafiotopdarkcliente.ui
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,13 +45,24 @@ class FragmentoAddMision : Fragment() {
 
         binding.btnMatriculaNaveM.setOnClickListener {
 
+            viewModelCompartir.naveSeleccionada.value = null
+
+            val fragmentoNaves = FragmentoNavesEnMisiones()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.miFragContainer, fragmentoNaves)
+                .addToBackStack(null)
+                .commit()
+
         }
 
         viewModelCompartir.naveSeleccionada.observe(viewLifecycleOwner){ nave ->
             nave?.let{
                 binding.tvMatriculaNaveM.text = nave.matricula
+                Log.e("Izaskun", "tvMatriculaNaveM en AddMision${viewModelCompartir.naveSeleccionada.value?.matricula}")
             }
         }
+//        binding.tvMatriculaNaveM.text= viewModelCompartir.naveSeleccionada.value?.matricula
+//        Log.e("Izaskun", "tvMatriculaNaveM en AddMision${viewModelCompartir.naveSeleccionada.value?.matricula}")
     }
 
 }
