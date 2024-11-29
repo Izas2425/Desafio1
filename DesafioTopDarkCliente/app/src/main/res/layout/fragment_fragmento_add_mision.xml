@@ -19,38 +19,94 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfNombreM"
-        android:layout_width="305dp"
-        android:layout_height="67dp"
+        android:layout_width="213dp"
+        android:layout_height="74dp"
         android:hint="Nombre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085">
+        app:layout_constraintVertical_bias="0.062">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtNombreM"
-            android:layout_width="match_parent"
+            android:layout_width="210dp"
             android:layout_height="54dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfExperienciaM"
-        android:layout_width="305dp"
-        android:layout_height="67dp"
+        android:layout_width="140dp"
+        android:layout_height="74dp"
         android:hint="Experiencia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
+        app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.242">
+        app:layout_constraintVertical_bias="0.06">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtExperienciaM"
-            android:layout_width="match_parent"
-            android:layout_height="54dp" />
+            android:layout_width="125dp"
+            android:layout_height="58dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfDuracionM"
+        android:layout_width="140dp"
+        android:layout_height="74dp"
+        android:hint="Duración"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.535">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtDuracionM"
+            android:layout_width="125dp"
+            android:layout_height="58dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfCazasM"
+        android:layout_width="140dp"
+        android:layout_height="74dp"
+        android:hint="Cazas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCazasM"
+            android:layout_width="125dp"
+            android:layout_height="58dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfObjetivosM"
+        android:layout_width="140dp"
+        android:layout_height="74dp"
+        android:hint="Objetivos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.817">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtObjetivosM"
+            android:layout_width="125dp"
+            android:layout_height="58dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -60,27 +116,28 @@
         android:text="Elegir matricula nave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imFondoAddM"
-        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="@+id/imFondoAddM"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintVertical_bias="0.204" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfDescripcionM"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="252dp"
+        android:layout_height="76dp"
         android:hint="Descripción"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758">
+        app:layout_constraintVertical_bias="0.357">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtDescripcionM"
-            android:layout_width="match_parent"
-            android:layout_height="190dp" />
+            android:layout_width="223dp"
+            android:layout_height="65dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,10 +148,10 @@
         android:text="@string/botonAceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
+        app:layout_constraintVertical_bias="0.959" />
 
     <Button
         android:id="@+id/btnCancelarAddM"
@@ -106,7 +163,7 @@
         app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
+        app:layout_constraintVertical_bias="0.959" />
 
     <TextView
         android:id="@+id/tvMatriculaNaveM"
@@ -114,9 +171,33 @@
         android:layout_height="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.215" />
+
+    <CheckBox
+        android:id="@+id/cbCargaAddM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carga"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imFondoAddM"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553" />
+
+    <CheckBox
+        android:id="@+id/cbPasajerosAddM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pasajeros"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imFondoAddM"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.658" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,8 +19,8 @@ class FragmentoVNavesViewModel : ViewModel() {
     private val _myResponseListN = MutableLiveData<List<Nave>>()
     val myResponseListN: MutableLiveData<List<Nave>> get() = _myResponseListN
 
-    private val _myResponse = MutableLiveData<Nave>()
-    val myResponse: LiveData<Nave> get() = _myResponse
+    private val _myResponse = MutableLiveData<Nave?>()
+    val myResponse: MutableLiveData<Nave?> get() = _myResponse
 
     private val _resOperacion = MutableLiveData<Boolean>()
     val resOperacion: LiveData<Boolean> get() = _resOperacion
@@ -46,6 +46,8 @@ class FragmentoVNavesViewModel : ViewModel() {
     fun setPilotos(naves: ArrayList<MostrarNave>){
         _myResponseList.value = naves
     }
+
+
 
     fun deleteNavVM(matricula: String) {
         viewModelScope.launch {

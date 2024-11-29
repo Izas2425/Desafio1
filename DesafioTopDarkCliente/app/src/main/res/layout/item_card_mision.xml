@@ -12,6 +12,7 @@
         <ImageView
             android:id="@+id/inFondoCardMision"
             android:layout_width="wrap_content"
+            android:alpha="0.5"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/fondo_card_mision" />
 
@@ -19,6 +20,7 @@
             android:id="@+id/tvNombreM"
             android:layout_width="120dp"
             android:layout_height="29dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.085"
@@ -30,6 +32,7 @@
             android:id="@+id/tvExperienciaM"
             android:layout_width="97dp"
             android:layout_height="31dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.085"
