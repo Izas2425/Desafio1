@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoAddMisionBinding
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoAddNaveBinding
@@ -23,9 +25,7 @@ class FragmentoAddMision : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModelCompartir: FragmentoNavesEnMisionesViewModel by activityViewModels()
-
     private val fragmentoVNavesViewModel : FragmentoVNavesViewModel by viewModels()
-
     private val viewModelMision: FragmentoAddMisionViewModel by viewModels()
 
     private lateinit var mision: Mision
@@ -38,6 +38,12 @@ class FragmentoAddMision : Fragment() {
     var pasajeros: Boolean = false
     var tipo: String = ""
     var ultimoId: Int = 0
+    var duracion: Int = 0
+    var cazas: Int = 0
+    var objetivos: Int = 0
+
+    var seguir: Boolean = false
+
 
 
     companion object {
@@ -45,11 +51,14 @@ class FragmentoAddMision : Fragment() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onCreateView(
@@ -71,6 +80,19 @@ class FragmentoAddMision : Fragment() {
         carga = false
         pasajeros = false
 
+
+        viewModelMision.myResponseListM.observe(viewLifecycleOwner, Observer { misiones ->
+
+        })
+
+        viewModelMision.ultimaMisionMv()
+//        viewModelMision.ultimoId.observe(viewLifecycleOwner, Observer { id ->
+//            id?.let {
+//                ultimoId = id.toInt()
+//            }
+//        })
+
+
         binding.btnMatriculaNaveM.setOnClickListener {
 
             viewModelCompartir.naveSeleccionada.value = null
@@ -80,7 +102,6 @@ class FragmentoAddMision : Fragment() {
                 .replace(R.id.miFragContainer, fragmentoNaves)
                 .addToBackStack(null)
                 .commit()
-
         }
 
         viewModelCompartir.naveSeleccionada.observe(viewLifecycleOwner){ nave ->
@@ -88,32 +109,62 @@ class FragmentoAddMision : Fragment() {
                 binding.tvMatriculaNaveM.text = nave.matricula
                 Log.e("Izaskun", "tvMatriculaNaveM en AddMision${viewModelCompartir.naveSeleccionada.value?.matricula}")
                 matriculaNave = nave.matricula.toString()
-
                 fragmentoVNavesViewModel.getNaveVM(matriculaNave)
-
             }
         }
-
 
         fragmentoVNavesViewModel.myResponse.observe(viewLifecycleOwner){ nave ->
             nave?.let {
                 tipo = nave.tipo.toString()
-                carga = nave.carga
-                pasajeros = nave.pasajeros
+
                 Log.e("Izaskun", "tipo de nave  despues de observar myResponse: ${tipo}")
                 actualizarCamposSegunTipo()
             }
         }
 
-        viewModelMision.ultimaMisionMv()
-        viewModelMision.ultimoId.observe(viewLifecycleOwner){ misionId ->
-            if (misionId != null) {
-                ultimoId = misionId.toInt()
+        guardarDatos()
+
+        binding.btnAceptarAddM.setOnClickListener {
+
+            // Se comprueba que los datos estén rellenos
+            if(validarCampos()){
+                // primero insertar mision
+                mision.idmision = 0
+                mision.nombre = binding.tfNombreM.editText?.text.toString()
+                mision.descripcion = binding.tfDescripcionM.editText?.text.toString()
+                mision.matriculanave = matriculaNave
+                mision.experiencia = binding.tfExperienciaM.editText?.text.toString().toIntOrNull()
+
+                viewModelMision.addMisMV(mision)
+
+                viewModelMision.obtenerTodasLasMisiones()
+
+//                viewModelMision.ultimaMisionMv()
+                viewModelMision.ultimoId.observe(viewLifecycleOwner, Observer { id ->
+                    id?.let {
+                        ultimoId = id.toInt()
+                    }
+                })
+
+                Log.e("Izaskun", "id ultimo :  ${ultimoId}")
+
+                limpiar()
+
+
             }
+            else{
+                Toast.makeText(requireContext(), "Rellena los campos", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
-
+        binding.btnCancelarAddM.setOnClickListener {
+            //Vuelve al fragmento anterior
+            requireActivity().onBackPressed()
+        }
     }
+
+
 
     fun actualizarCamposSegunTipo(){
         Log.e("Izaskun", "tipo de nave en actualizarCampoSegunTipo:  ${tipo}")
@@ -140,6 +191,72 @@ class FragmentoAddMision : Fragment() {
                 binding.cbPasajerosAddM.isEnabled = true
             }
         }
+    }
+
+    fun guardarDatos(){
+        var dato: String = ""
+        when (tipo) {
+            "Combate" -> {
+                dato = binding.tfCazasM.editText?.text.toString()
+                if ( dato.isEmpty()){
+                    Toast.makeText(requireContext(), "Introduzca el número de cazas", Toast.LENGTH_SHORT).show()
+                    seguir = false
+                }
+                else {
+                    cazas = dato.toIntOrNull()!!
+                    seguir = true
+                }
+
+            }
+            "Vuelo" -> {
+                dato = binding.tfDuracionM.editText?.text.toString()
+                carga = binding.cbCargaAddM.isChecked
+                pasajeros = binding.cbPasajerosAddM.isChecked
+                if ( dato.isEmpty()){
+                    Toast.makeText(requireContext(), "Introduzca la duración de la mision", Toast.LENGTH_SHORT).show()
+                    seguir = false
+                }
+                else {
+                    duracion = dato.toIntOrNull()!!
+                    seguir = true
+                }
+
+            }
+            else -> { // Bombardero
+                dato = binding.tfObjetivosM.editText?.text.toString()
+                carga = binding.cbCargaAddM.isChecked
+                pasajeros = binding.cbPasajerosAddM.isChecked
+                if ( dato.isEmpty()){
+                    Toast.makeText(requireContext(), "Introduzca el número de objetivos", Toast.LENGTH_SHORT).show()
+                    seguir = false
+                }
+                else {
+                    seguir = true
+                    objetivos = dato.toIntOrNull()!!
+                }
+            }
+        }
+    }
+    private fun validarCampos(): Boolean {
+        return if (binding.tfNombreM.editText?.text.toString().isEmpty() ||
+            binding.tfDescripcionM.editText?.text.toString().isEmpty() ||
+            binding.tfExperienciaM.editText?.text.toString().isEmpty()
+        ) {
+            Toast.makeText(requireContext(), "Rellena los campos", Toast.LENGTH_SHORT).show()
+            false
+        } else {
+            true
+        }
+    }
+
+    fun limpiar(){
+        binding.txtDuracionM.setText("")
+        binding.txtExperienciaM.setText("")
+        binding.txtDescripcionM.setText("")
+        binding.txtNombreM.setText("")
+        binding.tvMatriculaNaveM.text = ""
+        binding.cbCargaAddM.isChecked = false
+        binding.cbPasajerosAddM.isChecked = false
     }
 
 }

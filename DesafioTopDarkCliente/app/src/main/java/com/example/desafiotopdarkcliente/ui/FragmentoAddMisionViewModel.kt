@@ -107,20 +107,14 @@ class FragmentoAddMisionViewModel : ViewModel() {
 
             if (response.isSuccessful) {
                 val ultimoId = response.body()
-
-                if (ultimoId != null) {
-                    _ultimoId.value = ultimoId
-                    _resOperacion.value = true
-                    _errorCode.value = response.code()
-                } else {
-                    _resOperacion.value = false
-                    _errorCode.value = response.code()
-                }
-
-            }else {
+                _ultimoId.value = ultimoId
+                _resOperacion.value = true
+                ultimaMisionMv()
+            } else {
+                _ultimoId.value = null
                 _resOperacion.value = false
-                _errorCode.value = response.code()
             }
+            _errorCode.value = response.code()
         }
     }
 
