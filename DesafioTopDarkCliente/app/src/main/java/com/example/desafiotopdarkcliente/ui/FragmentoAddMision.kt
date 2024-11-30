@@ -75,6 +75,9 @@ class FragmentoAddMision : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mision = Mision()
+        vuelo = Vuelo()
+        combate = Combate()
+        bombardero = Bombardero()
 
         binding.tvMatriculaNaveM.text = ""
         carga = false
@@ -85,14 +88,15 @@ class FragmentoAddMision : Fragment() {
 
         })
 
-        viewModelMision.ultimaMisionMv()
-//        viewModelMision.ultimoId.observe(viewLifecycleOwner, Observer { id ->
-//            id?.let {
-//                ultimoId = id.toInt()
-//            }
-//        })
 
+       viewModelMision.ultimaMisionMv()
+        viewModelMision.ultimoId.observe(viewLifecycleOwner, Observer { id ->
+            id?.let {
+                ultimoId = id.toInt()
+            }
+        })
 
+        Log.e("Izaskun", "id ultimo  antes de btnMatriculaNave:  ${ultimoId}")
         binding.btnMatriculaNaveM.setOnClickListener {
 
             viewModelCompartir.naveSeleccionada.value = null
@@ -122,6 +126,9 @@ class FragmentoAddMision : Fragment() {
             }
         }
 
+
+
+
         guardarDatos()
 
         binding.btnAceptarAddM.setOnClickListener {
@@ -137,19 +144,49 @@ class FragmentoAddMision : Fragment() {
 
                 viewModelMision.addMisMV(mision)
 
-                viewModelMision.obtenerTodasLasMisiones()
+//                viewModelMision.obtenerTodasLasMisiones()
 
 //                viewModelMision.ultimaMisionMv()
                 viewModelMision.ultimoId.observe(viewLifecycleOwner, Observer { id ->
                     id?.let {
                         ultimoId = id.toInt()
+                        Log.e("Izaskun", "id ultimo mision despues de addMiss:  ${ultimoId} it ${id.toInt()}")
                     }
                 })
 
-                Log.e("Izaskun", "id ultimo :  ${ultimoId}")
+                when (tipo) {
+                    "Combate" -> {
+                        // solucion temporal
+                        combate.idmision = ultimoId +1
+//                        combate.idmision = ultimoId
+                        Log.e("Izaskun", "id combate:  ${vuelo.idmision}")
+                        combate.cazas = binding.tfCazasM.editText?.text.toString().toIntOrNull()
+                        viewModelMision.addComMV(combate)
+                    }
+                    "Vuelo" -> {
+                        // solucion temporal
+                        vuelo.idmision = ultimoId + 1
+//                        vuelo.idmision = ultimoId
+                        Log.e("Izaskun", "id vuelo:  ${vuelo.idmision}")
+                        vuelo.carga = binding.cbCargaAddM.isChecked
+                        vuelo.pasajeros = binding.cbPasajerosAddM.isChecked
+                        vuelo.duracion = binding.tfDuracionM.editText?.text.toString().toIntOrNull()
+                        viewModelMision.addVueMV(vuelo)
+                    }
+                    else -> { // Bombardero
+                        // solucion temporal
+                        bombardero.idmision = ultimoId + 1
+//                        bombardero.idmision = ultimoId
+                        Log.e("Izaskun", "id bombardero:  ${vuelo.idmision}")
+                        bombardero.carga = binding.cbCargaAddM.isChecked
+                        bombardero.pasajeros = binding.cbPasajerosAddM.isChecked
+                        bombardero.objetivos = binding.tfObjetivosM.editText?.text.toString().toIntOrNull()
+                        viewModelMision.addBomMV(bombardero)
+                    }
+                }
 
                 limpiar()
-
+                requireActivity().onBackPressed()
 
             }
             else{

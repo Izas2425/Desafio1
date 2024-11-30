@@ -48,7 +48,9 @@ class FragmentoAddMisionViewModel : ViewModel() {
             if (response.isSuccessful) {
                 _resOperacion.value = response.body()
                 _errorCode.value = response.code()
+
                 obtenerTodasLasMisiones()
+               // ultimaMisionMv()
             } else {
                 _resOperacion.value = false
                 _errorCode.value = response.code()
@@ -93,6 +95,7 @@ class FragmentoAddMisionViewModel : ViewModel() {
             if (response.isSuccessful) {
                 _resOperacion.value = response.body()
                 _errorCode.value = response.code()
+
                 obtenerTodosLosVuelos()
             } else {
                 _resOperacion.value = false
@@ -109,7 +112,7 @@ class FragmentoAddMisionViewModel : ViewModel() {
                 val ultimoId = response.body()
                 _ultimoId.value = ultimoId
                 _resOperacion.value = true
-                ultimaMisionMv()
+               // ultimaMisionMv()
             } else {
                 _ultimoId.value = null
                 _resOperacion.value = false
