@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiotopdarkcliente.R
@@ -63,6 +64,9 @@ class FragmentoNavesEnMisiones : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Ocultar la flecha de retroceso en la barra de herramientas
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
         //Inicializar el RecyclerView y el adaptador
         setupRecyclerView()
 
@@ -88,6 +92,13 @@ class FragmentoNavesEnMisiones : Fragment() {
                 Toast.makeText(requireContext(), "Debe seleccionar una nave antes de continuar", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.btnCancelarNavesEnMisiones.setOnClickListener {
+            //Vuelve al fragmento anterior
+            requireActivity().onBackPressed()
+//            parentFragmentManager.popBackStack()
+        }
+
     }
 
 

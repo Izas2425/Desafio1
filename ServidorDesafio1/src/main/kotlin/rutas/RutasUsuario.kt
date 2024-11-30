@@ -43,6 +43,16 @@ fun Route.rutasUsuario() {
        }
    }
 
+    route("/listadoPilotosRanking"){
+        get {
+            if (usuarioDAO.obtenerPilotosPorExperiencia().isNotEmpty()) {
+                return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerPilotosPorExperiencia())
+            } else {
+                return@get call.respond(HttpStatusCode.NotFound, null)
+            }
+        }
+    }
+
     route("/login") {
         post{
             //  Recibe un usuarioLogIn (nombre y password) de inicio de sesión en el cuerpo de la solicitud.

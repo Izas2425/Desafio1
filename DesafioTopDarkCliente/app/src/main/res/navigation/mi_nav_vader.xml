@@ -28,6 +28,9 @@
              <action
                 android:id="@+id/action_VPilotos_to_AddPiloto"
                 app:destination="@id/navegation_fragmento_add_piloto" />
+            <action
+                android:id="@+id/action_VPilotos_to_RankingPilotos"
+                app:destination="@id/navegation_fragmento_ranking_pilotos"/>
     </fragment>
     <fragment
         android:id="@+id/navegation_fragmento_v_misiones"
@@ -57,5 +60,11 @@
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoAddMision"
         android:label="Registrar nueva misión"
         tools:layout="@layout/fragment_fragmento_add_mision"
+        />
+    <fragment
+        android:id="@+id/navegation_fragmento_ranking_pilotos"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoRankingPilotos"
+        android:label="Ranking Pilotos"
+        tools:layout="@layout/fragment_fragmento_ranking_pilotos"
         />
 </navigation>

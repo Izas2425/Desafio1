@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.TooltipCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -93,6 +96,12 @@ class FragmentoVPilotos : Fragment() {
         fabAddPiloto.setOnClickListener{
             findNavController().navigate(R.id.action_VPilotos_to_AddPiloto)
         }
+
+        val fabRankingPilotos: FloatingActionButton = view.findViewById(R.id.fabRankingPilotos)
+        fabRankingPilotos.setOnClickListener {
+            findNavController().navigate(R.id.action_VPilotos_to_RankingPilotos)
+        }
+
     }
 
     override fun onDestroyView() {

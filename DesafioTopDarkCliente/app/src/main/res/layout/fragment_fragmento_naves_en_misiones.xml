@@ -17,16 +17,18 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaNavesEnMisiones"
-        android:layout_width="408dp"
-        android:layout_height="482dp"
+        android:layout_width="410dp"
+        android:layout_height="444dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imFondoNavesEnMisiones"
-        app:layout_constraintStart_toStartOf="@+id/imFondoNavesEnMisiones"
-        app:layout_constraintTop_toTopOf="@+id/imFondoNavesEnMisiones" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imFondoNavesEnMisiones"
+        app:layout_constraintVertical_bias="0.638" />
 
     <Button
         android:id="@+id/btnAceptaNavesEnMisiones"
@@ -35,7 +37,20 @@
         android:text="@string/botonAceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imFondoNavesEnMisiones"
-        app:layout_constraintVertical_bias="0.927" />
+        app:layout_constraintVertical_bias="0.952" />
+
+    <Button
+        android:id="@+id/btnCancelarNavesEnMisiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/botonCancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.686"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
 </androidx.constraintlayout.widget.ConstraintLayout>

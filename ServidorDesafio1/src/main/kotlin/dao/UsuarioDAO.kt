@@ -10,4 +10,5 @@ interface UsuarioDAO {
     fun eliminar(id: Int): Boolean
     fun obtenerTodos(): List<Usuario>
     fun obtenerPilotos(): List<Usuario>
+    fun obtenerPilotosPorExperiencia(): List<Usuario>
 }

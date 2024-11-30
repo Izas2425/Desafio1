@@ -159,4 +159,30 @@ class UsuarioDAOImpl: UsuarioDAO {
         }
         return usuarios
     }
+
+    override fun obtenerPilotosPorExperiencia(): List<Usuario> {
+        val usuarios = mutableListOf<Usuario>()
+        val sql = "SELECT * FROM usuarios WHERE role = 'Piloto' ORDER BY experiencia DESC"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val usuario = Usuario(
+                    id = resultSet.getInt("id"),
+                    nombre = resultSet.getString("nombre"),
+                    password = resultSet.getString("password"),
+                    role = resultSet.getString("role"),
+                    edad = resultSet.getInt("edad"),
+                    experiencia = resultSet.getInt("experiencia"),
+                    foto = resultSet.getString("foto"),
+                    activado = resultSet.getInt("activado"),
+                    nivel = resultSet.getString("nivel")
+                )
+                usuarios.add(usuario)
+            }
+        }
+        return usuarios
+    }
 }
