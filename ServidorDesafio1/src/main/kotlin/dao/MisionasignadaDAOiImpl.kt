@@ -12,7 +12,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
             statement.setInt(1, misionesasignadas.id)
             statement.setInt(2, misionesasignadas.idusuario)
             statement.setInt(3, misionesasignadas.idmision)
-            statement.setInt(4, misionesasignadas.estado)
+            statement.setString(4, misionesasignadas.estado)
 
             return statement.executeUpdate() > 0
         }
@@ -32,7 +32,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
                     id = resultSet.getInt("id"),
                     idusuario = resultSet.getInt("idusuario"),
                     idmision = resultSet.getInt("idmision"),
-                    estado = resultSet.getInt("estado")
+                    estado = resultSet.getString("estado")
                 )
             }
         }
@@ -64,7 +64,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
                     id = resultSet.getInt("id"),
                     idusuario = resultSet.getInt("idusuario"),
                     idmision = resultSet.getInt("idmision"),
-                    estado = resultSet.getInt("estado")
+                    estado = resultSet.getString("estado")
                 )
                 misionesasignadas.add(misionasignada)
             }
@@ -74,7 +74,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
 
     override fun obtenerSuperadas(): List<Misionasignada> {
         val misionesSuperadas = mutableListOf<Misionasignada>()
-        val sql = "SELECT * FROM misionesasignadas WHERE estado = 1"
+        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'Superada'"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -85,7 +85,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
                     id = resultSet.getInt("id"),
                     idusuario = resultSet.getInt("idusuario"),
                     idmision = resultSet.getInt("idmision"),
-                    estado = resultSet.getInt("estado")
+                    estado = resultSet.getString("estado")
                 )
                 misionesSuperadas.add(misionasignada)
             }
@@ -95,7 +95,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
 
     override fun obtenerNoSuperadas(): List<Misionasignada> {
         val misionesNoSuperadas = mutableListOf<Misionasignada>()
-        val sql = "SELECT * FROM misionesasignadas WHERE estado = 0"
+        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'No superada'"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -106,7 +106,7 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
                     id = resultSet.getInt("id"),
                     idusuario = resultSet.getInt("idusuario"),
                     idmision = resultSet.getInt("idmision"),
-                    estado = resultSet.getInt("estado")
+                    estado = resultSet.getString("estado")
                 )
                 misionesNoSuperadas.add(misionasignada)
             }
