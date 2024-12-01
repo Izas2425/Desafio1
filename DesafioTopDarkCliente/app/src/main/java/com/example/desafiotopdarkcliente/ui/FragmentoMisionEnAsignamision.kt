@@ -13,7 +13,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import api.MisionViewModel
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoMisionEnAsignamisionBinding
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoNavesEnMisionesBinding
@@ -23,6 +25,7 @@ class FragmentoMisionEnAsignamision : Fragment() {
 
     private var _binding: FragmentFragmentoMisionEnAsignamisionBinding? = null
     private val binding get() = _binding!!
+
 
     private val fragmentoMisionEnAsignarMisionVM : FragmentoMisionEnAsignamisionViewModel by activityViewModels()
 
@@ -41,7 +44,7 @@ class FragmentoMisionEnAsignamision : Fragment() {
             if (!misiones.isEmpty()){
                 datosRepreentar.clear()
                 for (mision in misiones){
-                    datosRepreentar.add(MostrarMision(mision.experiencia,mision.experiencia.toString()))
+                    datosRepreentar.add(MostrarMision(mision.idmision, mision.nombre,mision.experiencia))
                 }
                 customAdapter.updateData(datosRepreentar)
             }
