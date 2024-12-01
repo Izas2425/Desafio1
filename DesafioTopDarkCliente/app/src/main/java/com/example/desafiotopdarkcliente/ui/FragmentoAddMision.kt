@@ -277,7 +277,8 @@ class FragmentoAddMision : Fragment() {
     private fun validarCampos(): Boolean {
         return if (binding.tfNombreM.editText?.text.toString().isEmpty() ||
             binding.tfDescripcionM.editText?.text.toString().isEmpty() ||
-            binding.tfExperienciaM.editText?.text.toString().isEmpty()
+            binding.tfExperienciaM.editText?.text.toString().isEmpty() ||
+            binding.tvMatriculaNaveM.toString().isEmpty()
         ) {
             Toast.makeText(requireContext(), "Rellena los campos", Toast.LENGTH_SHORT).show()
             false

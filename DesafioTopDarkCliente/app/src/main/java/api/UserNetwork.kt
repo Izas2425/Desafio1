@@ -1,5 +1,6 @@
 package api
 
+import modelo.Misionasignada
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import parametros.Parametros
@@ -27,6 +28,14 @@ object UserNetwork {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MisionAPI::class.java)
+    }
+
+    val retrofitMisionAsignada  by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url + ":" + Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MisionasignadaAPI::class.java)
     }
 
 }

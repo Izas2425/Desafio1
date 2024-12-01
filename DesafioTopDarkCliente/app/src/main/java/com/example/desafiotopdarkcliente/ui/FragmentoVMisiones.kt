@@ -53,7 +53,7 @@ class FragmentoVMisiones : Fragment() {
             if(!misiones.isEmpty()){
                 datosRepresentar.clear()
                 for(mis in misiones){
-                    datosRepresentar.add(MostrarMision(mis.idmision, mis.nombre.toString(), mis.experiencia.toString()))
+                    datosRepresentar.add(MostrarMision(mis.idmision, mis.nombre.toString(), mis.experiencia))
                 }
                 customAdapter.updateData(datosRepresentar)
             }
@@ -84,6 +84,11 @@ class FragmentoVMisiones : Fragment() {
         val fabAddMision: FloatingActionButton = view.findViewById(R.id.fabAddMision)
         fabAddMision.setOnClickListener {
             findNavController().navigate(R.id.action_VMisiones_to_AddMision)
+        }
+
+        val fabAsignarMision: FloatingActionButton = view.findViewById(R.id.fabAsignarMisiones)
+        fabAsignarMision.setOnClickListener {
+            findNavController().navigate(R.id.action_Vmision_to_AsignarMision)
         }
     }
 

@@ -56,7 +56,7 @@ class AdaptadorRvMisiones(
         @SuppressLint("ResourceAsColor")
         fun bind(mis: MostrarMision, context: Context, pos: Int, adaptadorRvDatos: AdaptadorRvMisiones){
             nombreMision.text = mis.nombre
-            experienciaMision.text = mis.experiencia
+            experienciaMision.text = mis.experiencia.toString()
 
             btnDetelleM.setOnClickListener {
 
@@ -65,7 +65,7 @@ class AdaptadorRvMisiones(
                 adaptadorRvDatos.viewModelVMisionesViewModel.myResponseM.observe(context as LifecycleOwner){ mision ->
                     mision?.let {
                         AlertDialog.Builder(context)
-                            .setTitle("Detalle la misión")
+                            .setTitle("Detalle de la misión")
                             .setMessage("Nombre: ${mision.nombre}\n" +
                                     "Experiencia: ${mision.experiencia}\n" +
                                     "Descripcion: ${mision.descripcion}\n" +

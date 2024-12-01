@@ -41,6 +41,10 @@
             android:id="@+id/action_VMisiones_to_AddMision"
             app:destination="@id/navegation_fragmento_add_mision"
             />
+        <action
+            android:id="@+id/action_Vmision_to_AsignarMision"
+            app:destination="@+id/navegation_fragmento_asignar_mision"
+            />
     </fragment>
     <fragment
         android:id="@+id/navegation_fragmento_add_piloto"
@@ -66,5 +70,18 @@
         android:name="com.example.desafiotopdarkcliente.ui.FragmentoRankingPilotos"
         android:label="Ranking Pilotos"
         tools:layout="@layout/fragment_fragmento_ranking_pilotos"
+        />
+    <fragment
+        android:id="@+id/navegation_fragmento_asignar_mision"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoAsignarMision"
+        android:label="Nueva Misión asignada"
+        tools:layout="@layout/fragment_fragmento_asignar_mision">
+
+    </fragment>
+    <fragment
+        android:id="@+id/navegation_fragmento_mision_en_asignarMision"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoMisionEnAsignamision"
+        android:label="Selecciona misión en Misión Asignada"
+        tools:layout="@layout/fragment_fragmento_mision_en_asignamision"
         />
 </navigation>

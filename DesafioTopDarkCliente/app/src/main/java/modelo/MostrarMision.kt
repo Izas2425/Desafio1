@@ -10,6 +10,6 @@ data class MostrarMision(
     var nombre: String? = null,
 
     @SerializedName("experiencia")
-    var experiencia: String? = null,
+    var experiencia: Int? = null,
 
 )
