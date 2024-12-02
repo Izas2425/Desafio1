@@ -14,79 +14,80 @@
         android:src="@drawable/fondo_misiones_vader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnElegirMisionEnAsignarMisiones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="76dp"
         android:text="Seleccionar Misión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imFondoAsignarMision"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.297" />
 
     <TextView
         android:id="@+id/tvMisionElegidaAsignarMision"
-        android:layout_width="261dp"
-        android:layout_height="56dp"
+        android:layout_width="232dp"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imFondoAsignarMision"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnElegirMisionEnAsignarMisiones"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.234" />
+        app:layout_constraintVertical_bias="0.184" />
 
     <Button
         android:id="@+id/btnElegirPilotoEnAsignarMisiones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="124dp"
+        android:layout_height="69dp"
         android:text="Seleccionar Piloto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imFondoAsignarMision"
-        app:layout_constraintVertical_bias="0.383" />
+        app:layout_constraintVertical_bias="0.427" />
 
     <TextView
         android:id="@+id/tvPilotoElegidoAsignarMision"
-        android:layout_width="261dp"
-        android:layout_height="56dp"
+        android:layout_width="238dp"
+        android:layout_height="78dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imFondoAsignarMision"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toEndOf="@+id/btnElegirPilotoEnAsignarMisiones"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.431" />
 
     <TextView
         android:id="@+id/tvEstadoAsignarMision"
-        android:layout_width="261dp"
-        android:layout_height="56dp"
+        android:layout_width="345dp"
+        android:layout_height="78dp"
         android:text="Estado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imFondoAsignarMision"
-        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintVertical_bias="0.615" />
 
     <Spinner
         android:id="@+id/spEstadoAsignarMision"
-        android:layout_width="170dp"
-        android:layout_height="38dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imFondoAsignarMision"
-        app:layout_constraintEnd_toEndOf="@+id/imFondoAsignarMision"
-        app:layout_constraintHorizontal_bias="0.659"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        android:layout_width="245dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvEstadoAsignarMision"
+        app:layout_constraintEnd_toEndOf="@+id/tvEstadoAsignarMision"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="@+id/tvEstadoAsignarMision"
+        app:layout_constraintTop_toTopOf="@+id/tvEstadoAsignarMision"
+        app:layout_constraintVertical_bias="0.411" />
 
     <Button
         android:id="@+id/btnAceptarAsignaMision"

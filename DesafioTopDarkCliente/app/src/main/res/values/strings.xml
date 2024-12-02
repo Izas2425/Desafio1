@@ -23,6 +23,11 @@
         <item>Bombardeo</item>
         <item>Combate</item>
     </string-array>
+    <string-array name="estado_mision_asignada">
+        <item>Asignada</item>
+        <item>Superada</item>
+        <item>No superada</item>
+    </string-array>
 
 
 </resources>

@@ -1,11 +1,13 @@
 package com.example.desafiotopdarkcliente.ui
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoAsignarMisionBinding
@@ -51,11 +53,22 @@ class FragmentoAsignarMision : Fragment() {
         return root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvMisionElegidaAsignarMision.text = ""
         binding.tvPilotoElegidoAsignarMision.text = ""
+
+        // Para el spinner
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.estado_mision_asignada,
+            android.R.layout.simple_spinner_item
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spEstadoAsignarMision.adapter = adapter
 
         binding.btnElegirMisionEnAsignarMisiones.setOnClickListener {
             viewModelCompartirMision.misionSeleccionada.value = null
