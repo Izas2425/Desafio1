@@ -159,7 +159,7 @@ class FragmentoAddMision : Fragment() {
                         // solucion temporal
                         combate.idmision = ultimoId +1
 //                        combate.idmision = ultimoId
-                        Log.e("Izaskun", "id combate:  ${vuelo.idmision}")
+                        Log.e("Izaskun", "id combate:  ${combate.idmision}")
                         combate.cazas = binding.tfCazasM.editText?.text.toString().toIntOrNull()
                         viewModelMision.addComMV(combate)
                     }
@@ -177,7 +177,7 @@ class FragmentoAddMision : Fragment() {
                         // solucion temporal
                         bombardero.idmision = ultimoId + 1
 //                        bombardero.idmision = ultimoId
-                        Log.e("Izaskun", "id bombardero:  ${vuelo.idmision}")
+                        Log.e("Izaskun", "id bombardero:  ${bombardero.idmision}")
                         bombardero.carga = binding.cbCargaAddM.isChecked
                         bombardero.pasajeros = binding.cbPasajerosAddM.isChecked
                         bombardero.objetivos = binding.tfObjetivosM.editText?.text.toString().toIntOrNull()

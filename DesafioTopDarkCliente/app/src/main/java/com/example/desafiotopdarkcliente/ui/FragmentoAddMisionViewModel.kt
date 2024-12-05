@@ -1,5 +1,6 @@
 package com.example.desafiotopdarkcliente.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -44,16 +45,19 @@ class FragmentoAddMisionViewModel : ViewModel() {
     fun addMisMV(mision: Mision){
         viewModelScope.launch {
             val response: Response<Boolean> = UserNetwork.retrofitMision.addMision(mision)
+            //ultimaMisionMv()
 
             if (response.isSuccessful) {
                 _resOperacion.value = response.body()
                 _errorCode.value = response.code()
 
                 obtenerTodasLasMisiones()
-               // ultimaMisionMv()
+                ultimaMisionMv()
+                Log.e("Izaskun", "ultima mision en addMisMv ${_ultimoId.value}")
             } else {
                 _resOperacion.value = false
                 _errorCode.value = response.code()
+                Log.e("Izaskun", "code error en addMisMv ${_errorCode.value}")
             }
         }
     }

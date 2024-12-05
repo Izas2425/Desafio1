@@ -1,6 +1,5 @@
 package api
 
-import android.service.autofill.UserData
 import modelo.Misionasignada
 import retrofit2.Response
 import retrofit2.http.Body
@@ -24,7 +23,7 @@ interface MisionasignadaAPI {
     suspend fun getMisionesasignadasNoSuperadas():Response<MutableList<Misionasignada>>
 
     @POST ("registrarMisionasignada")
-    suspend fun addMisionasignada(@Body userData: UserData):Response<Boolean>
+    suspend fun addMisionasignada(@Body userData: Misionasignada):Response<Boolean>
 
     @DELETE ("borrarMisionasignada")
     suspend fun deleteMisionasignada(@Path("id") id: Int): Response<Boolean>

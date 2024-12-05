@@ -3,11 +3,13 @@ package com.example.desafiotopdarkcliente.ui
 import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoAsignarMisionBinding
@@ -20,7 +22,8 @@ class FragmentoAsignarMision : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModelCompartirMision: FragmentoMisionEnAsignamisionViewModel by activityViewModels()
-    private val viewModelMision: FragmentoAsignarMisionViewModel by viewModels()
+    private val viewModelCompartirPilotos: FragmentoPilotoEnAsignarmisionViewModel by activityViewModels()
+    private val viewModelAsignarMision: FragmentoAsignarMisionViewModel by viewModels()
 
     private lateinit var misionasignada: Misionasignada
 
@@ -57,6 +60,8 @@ class FragmentoAsignarMision : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        misionasignada = Misionasignada()
+
         binding.tvMisionElegidaAsignarMision.text = ""
         binding.tvPilotoElegidoAsignarMision.text = ""
 
@@ -90,6 +95,77 @@ class FragmentoAsignarMision : Fragment() {
                 experiencia = mision.experiencia!!
             }
 
+        }
+
+        binding.btnElegirPilotoEnAsignarMisiones.setOnClickListener {
+            viewModelCompartirPilotos.pilotosSeleccionados.value = null
+            val fragmentoPilotos = FragmentoPilotoEnAsignarmision()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.miFragContainer, fragmentoPilotos)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        viewModelCompartirPilotos.pilotosSeleccionados.observe(viewLifecycleOwner){ pilotos ->
+            pilotos?.let{
+                if(it.isNotEmpty()){
+                    val nombresPilotos = it.joinToString(", "){piloto ->
+                        piloto?.nombre ?: "Desconocido"
+                    }
+                    binding.tvPilotoElegidoAsignarMision.text = "$nombresPilotos"
+                }
+
+            }
+        }
+
+        binding.btnAceptarAsignaMision.setOnClickListener{
+            if (validarCampos()){
+                val pilotosSeleccionados = viewModelCompartirPilotos.pilotosSeleccionados.value
+                Log.d("Izaskun", "Pilotos seleccionados: $pilotosSeleccionados")
+                if (!pilotosSeleccionados.isNullOrEmpty()){
+                    for (piloto in pilotosSeleccionados){
+                        piloto?.let {
+                            val nuevaMisionAsignada = Misionasignada(
+                                id = 0,
+                                idusuario = piloto.id,
+                                idmision = viewModelCompartirMision.misionSeleccionada.value?.idmision,
+                                estado = binding.spEstadoAsignarMision.selectedItem.toString())
+
+                            Log.d("Izaskun", "Creando misión asignada (botón Aceptar): $nuevaMisionAsignada")
+//                            misionasignada.id = 0
+//                            misionasignada.idusuario = piloto.id
+//                            misionasignada.idmision = viewModelCompartirMision.misionSeleccionada.value?.idmision
+//                            misionasignada.estado = binding.spEstadoAsignarMision.selectedItem.toString()
+
+                            try {
+                                viewModelAsignarMision.addVM(nuevaMisionAsignada)
+                            }catch (e: Exception) {
+                                Log.e("Error", "Error al asignar la misión: ${e.message}")
+                                Toast.makeText(requireContext(), "Hubo un error al asignar la misión", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                    //Vuelve al fragmento anterior
+                    requireActivity().onBackPressed()
+                }
+
+            }
+
+        }
+
+        binding.btnCancelarAsignaMision.setOnClickListener {
+            //Vuelve al fragmento anterior
+            requireActivity().onBackPressed()
+        }
+    }
+
+    private fun validarCampos():Boolean{
+        return  if (binding.tvMisionElegidaAsignarMision.text.toString().isEmpty() ||
+                    binding.tvPilotoElegidoAsignarMision.text.toString().isEmpty()){
+            Toast.makeText(requireContext(), "Rellena los campos", Toast.LENGTH_SHORT).show()
+            false
+        }else{
+            true
         }
     }
 

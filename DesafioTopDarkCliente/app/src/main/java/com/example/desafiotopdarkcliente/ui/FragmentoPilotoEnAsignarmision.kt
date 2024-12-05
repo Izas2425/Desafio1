@@ -5,10 +5,12 @@ import adaptadores.AdaptadorRvPilotosEnAsignarmision
 import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,6 +69,26 @@ class FragmentoPilotoEnAsignarmision : Fragment() {
             datosRepresentar.addAll(listaPilotos)
             customAdapter.notifyDataSetChanged()
 
+        }
+
+        binding.btnAceptarPEnAsignarMision.setOnClickListener{
+            if(AdaptadorRvPilotosEnAsignarmision.seleccionado != -1){
+                val pilotosSeleccionados = fragmentoPilotoEnAsignarMisionVM.pilotosSeleccionados.value
+                Log.e("Izaskun", "pilotosSeleccionados botón AceptarPilotoEnasignarMision ${pilotosSeleccionados}")
+
+                pilotosSeleccionados?.let {
+                    parentFragmentManager.popBackStack()
+                }?: run {
+                    Toast.makeText(requireContext(), "No se pudo recuperar el piloto seleccionado", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(requireContext(), "Debe seleccionar por lo menos un piloto antes de continuar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnCancelarPEnAsignarMision.setOnClickListener{
+            //Vuelve al fragmento anterior
+            requireActivity().onBackPressed()
         }
 
     }
