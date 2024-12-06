@@ -76,7 +76,7 @@ class AdaptadorRvNaves (
                             pasajeros = "No"
                         }
                         AlertDialog.Builder(context)
-                            .setTitle("@string/detallepiloto")
+                            .setTitle("Detalles de la nave")
                             .setMessage("Matrícula: ${nave.matricula}\n" +
                                     "Tipo: ${nave.tipo}\n" +
                                     "¿Puede llevar carga?: ${carga}\n" +

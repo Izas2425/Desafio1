@@ -88,7 +88,7 @@ class AdaptadorRvMisionesEnAsignarmisiones(
                 adaptadorRvDatos.viewModelMisionesEnAsignarmisiones.myResponse.observe(context as LifecycleOwner){ mision ->
                     mision?.let {
                         AlertDialog.Builder(context)
-                            .setTitle("Detalle la misión")
+                            .setTitle("Detalle de la misión")
                             .setMessage("Nombre: ${mision.nombre}\n" +
                                     "Experiencia: ${mision.experiencia}\n" +
                                     "Descripcion: ${mision.descripcion}\n" +

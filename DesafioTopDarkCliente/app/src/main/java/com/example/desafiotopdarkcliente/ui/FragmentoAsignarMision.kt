@@ -145,6 +145,7 @@ class FragmentoAsignarMision : Fragment() {
                             }
                         }
                     }
+                    limpiar()
                     //Vuelve al fragmento anterior
                     requireActivity().onBackPressed()
                 }
@@ -154,6 +155,7 @@ class FragmentoAsignarMision : Fragment() {
         }
 
         binding.btnCancelarAsignaMision.setOnClickListener {
+            limpiar()
             //Vuelve al fragmento anterior
             requireActivity().onBackPressed()
         }
@@ -167,6 +169,14 @@ class FragmentoAsignarMision : Fragment() {
         }else{
             true
         }
+    }
+
+    private fun limpiar(){
+        binding.tvMisionElegidaAsignarMision.text = ""
+        binding.tvPilotoElegidoAsignarMision.text = ""
+
+        viewModelCompartirMision.misionSeleccionada.value = null
+        viewModelCompartirPilotos.pilotosSeleccionados.value = null
     }
 
 }

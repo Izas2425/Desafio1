@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
@@ -75,22 +76,27 @@ class AdaptadorRvPilotosEnAsignarmision(
                 if(pos == AdaptadorRvPilotosEnAsignarmision.seleccionado){
                     AdaptadorRvPilotosEnAsignarmision.seleccionado = -1
                     listaActual.remove(user)
+                    Toast.makeText(context, "Piloto ${user.nombre} quitado de la lista", Toast.LENGTH_SHORT).show()
 //                    adaptadorRvDatos.viewModelVPilotosEnAsignarmisionVM.pilotosSeleccionados.value = null
                 }
                 else{
                     AdaptadorRvPilotosEnAsignarmision.seleccionado = pos
                     if (!listaActual.contains(user)){
                         listaActual.add(user)
+                        Toast.makeText(context, "Piloto ${user.nombre} añadido a la lista", Toast.LENGTH_SHORT).show()
                     }
 //                  adaptadorRvDatos.viewModelVPilotosEnAsignarmisionVM.pilotosSeleccionados.value = user
                 }
                 adaptadorRvDatos.viewModelVPilotosEnAsignarmisionVM.pilotosSeleccionados.value = listaActual
+                adaptadorRvDatos.notifyDataSetChanged()
             }
 
             btnDetalleP.setOnClickListener {
                 adaptadorRvDatos.viewModelVPilotosEnAsignarmisionVM.getUsuarioVM(user.id!!)
+
                 adaptadorRvDatos.viewModelVPilotosEnAsignarmisionVM.myResponse.observe(context as LifecycleOwner){ piloto ->
                     piloto?.let{
+
                         AlertDialog.Builder(context)
                             .setTitle("Detalles del piloto")
                             .setMessage("Nombre: ${piloto.nombre}\n" +
@@ -102,6 +108,10 @@ class AdaptadorRvPilotosEnAsignarmision(
                                 dialog.dismiss()
                             }
                             .show() // muestra el dialogo
+
+                        // porque cuando le daba a detalle de un piloto después de haberle dado antes a detalle de otro
+                        // se abrian los dos dialogos
+                        adaptadorRvDatos.viewModelVPilotosEnAsignarmisionVM.clearMyResponse()
                     }
                 }
             }

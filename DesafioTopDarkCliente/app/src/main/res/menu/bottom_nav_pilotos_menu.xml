@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navegation_fragmento_asignadas"
+        android:title="Asignadas"/>
+
+    <item
+        android:id="@+id/navagation_fragmento_superadas"
+        android:title="Superadas"/>
+
+    <item
+        android:id="@+id/navagation_fragmento_no_superadas"
+        android:title="No superadas"/>
+
+</menu>

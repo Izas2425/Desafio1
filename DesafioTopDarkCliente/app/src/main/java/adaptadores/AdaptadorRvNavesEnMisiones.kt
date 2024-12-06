@@ -96,9 +96,7 @@ class AdaptadorRvNavesEnMisiones (
             }
 
             btnDetalleN.setOnClickListener {
-
                 adaptadorRvDatos.viewModelNavesEnMisiones.getNaveVM(nav.matricula!!)
-
                 adaptadorRvDatos.viewModelNavesEnMisiones.myResponse.observe(context as LifecycleOwner){ nave ->
                     nave?.let{
                         if (nave.carga == true){
@@ -112,7 +110,7 @@ class AdaptadorRvNavesEnMisiones (
                             pasajeros = "No"
                         }
                         AlertDialog.Builder(context)
-                            .setTitle("@string/detallepiloto")
+                            .setTitle("Detalles de la nave")
                             .setMessage("Matrícula: ${nave.matricula}\n" +
                                     "Tipo: ${nave.tipo}\n" +
                                     "¿Puede llevar carga?: ${carga}\n" +

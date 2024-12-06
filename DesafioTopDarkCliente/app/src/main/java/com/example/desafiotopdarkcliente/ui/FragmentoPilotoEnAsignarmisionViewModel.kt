@@ -61,4 +61,9 @@ class FragmentoPilotoEnAsignarmisionViewModel : ViewModel()
             _isLoading.value = false
         }
     }
+
+    fun clearMyResponse() {
+        _myResponse.value = null
+    }
+
 }
