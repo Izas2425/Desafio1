@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mi_nav_piloto">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mi_nav_piloto"
+    app:startDestination="@id/fragmentoInicialPilotos">
+
+    <fragment
+        android:id="@+id/fragmentoInicialPilotos"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoInicialPilotos"
+        android:label="Piloto"
+        tools:layout="@layout/fragment_fragmento_inicial_pilotos" />
 
 </navigation>

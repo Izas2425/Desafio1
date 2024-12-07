@@ -10,7 +10,10 @@
         android:id="@+id/imFondoInicialPilotos"
         android:layout_width="446dp"
         android:layout_height="790dp"
+        android:alpha="0.5"
         android:src="@drawable/fondo_pilotos_inicial"
-        tools:layout_editor_absoluteX="-19dp"
-        tools:layout_editor_absoluteY="-28dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

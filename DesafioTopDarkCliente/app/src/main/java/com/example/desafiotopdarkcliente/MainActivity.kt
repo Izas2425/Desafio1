@@ -52,8 +52,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else{
-                    if (user.role == "Piloto")
-                     Toast.makeText(this, "se ha logeado un piloto", Toast.LENGTH_SHORT).show()
+                    if (user.role == "Piloto"){
+                        Toast.makeText(this, "se ha logeado un piloto", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, Piloto::class.java)
+                        startActivity(intent)
+                    }
+
                 }
             }
         })
