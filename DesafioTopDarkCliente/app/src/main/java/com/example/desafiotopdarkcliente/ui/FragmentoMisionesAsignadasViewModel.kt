@@ -32,10 +32,10 @@ class FragmentoMisionesAsignadasViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-      fun getMisionesAsignadasVM() {
+      fun getMisionesAsignadasVM(id: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            var response: Response<MutableList<Misionasignada>> = UserNetwork.retrofitMisionAsignada.getMisionesasignadas()
+            var response: Response<MutableList<Misionasignada>> = UserNetwork.retrofitMisionAsignada.getMisionesasignadas(id)
 
             if (response.isSuccessful) {
                 _myResponseListA.value = response.body()

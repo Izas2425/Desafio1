@@ -14,13 +14,13 @@ interface MisionasignadaAPI {
     suspend fun getMisionesasignadas(): Response<MutableList<Misionasignada>>
 
     @GET("listadoMisionesasignadas/{id}")
-    suspend fun getMisionasignada(@Path("id") id: Int): Response<Misionasignada>
+    suspend fun getMisionesasignadas(@Path("id") id: Int): Response<MutableList<Misionasignada>>
 
     @GET("listadoMisionesasignadasSuperadas/{id}")
-    suspend fun  getMisionesasignadasSuperadas(@Path("id") idUsuario: Int): Response<MutableList<Misionasignada>>
+    suspend fun  getMisionesasignadasSuperadas(@Path("id") id: Int): Response<MutableList<Misionasignada>>
 
     @GET("listadoMisionesasignadasNoSuperadas/{id}")
-    suspend fun getMisionesasignadasNoSuperadas(@Path("id") idUsuario: Int):Response<MutableList<Misionasignada>>
+    suspend fun getMisionesasignadasNoSuperadas(@Path("id") id: Int):Response<MutableList<Misionasignada>>
 
     @POST ("registrarMisionasignada")
     suspend fun addMisionasignada(@Body userData: Misionasignada):Response<Boolean>

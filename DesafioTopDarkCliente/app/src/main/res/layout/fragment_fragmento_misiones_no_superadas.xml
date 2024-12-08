@@ -20,6 +20,8 @@
         android:id="@+id/listaMisionesNoSuperadas"
         android:layout_width="394dp"
         android:layout_height="584dp"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="76dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imFondoMisionesNoSuperadas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
