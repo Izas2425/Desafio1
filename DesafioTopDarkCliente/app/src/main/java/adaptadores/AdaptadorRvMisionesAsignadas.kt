@@ -18,9 +18,6 @@ import modelo.MostrarMision
 class AdaptadorRvMisionesAsignadas(
     var misiones: ArrayList<MostrarMision>,
     var context: Context,
-    private val viewModelVMisionesAsignadas: FragmentoMisionesAsignadasViewModel,
-    private val viewModelVMisiones: FragmentoVMisionesViewModel
-):RecyclerView.Adapter<AdaptadorRvMisionesAsignadas.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorRvMisionesAsignadas.ViewHolder {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_card_mision, parent, false)
@@ -56,21 +53,6 @@ class AdaptadorRvMisionesAsignadas(
             experienciaMision.text = mis.experiencia.toString()
 
             btnDetelleM.setOnClickListener {
-                adaptadorRvDatos.viewModelVMisiones.getMisionVM(mis.idmision!!)
-                adaptadorRvDatos.viewModelVMisiones.myResponseM.observe(context as LifecycleOwner){mision ->
-                    mision?.let {
-                        AlertDialog.Builder(context)
-                            .setTitle("Detalle de la misión")
-                            .setMessage("Nombre: ${mision.nombre}\n" +
-                                    "Experiencia: ${mision.experiencia}\n" +
-                                    "Descripcion: ${mision.descripcion}\n" +
-                                    "Matrícula de la nave: ${mision.matriculanave}")
-                            .setPositiveButton("Aceptar"){dialog, _ ->
-                                dialog.dismiss()
-                            }
-                            .show()
-                    }
-                }
             }
         }
     }
