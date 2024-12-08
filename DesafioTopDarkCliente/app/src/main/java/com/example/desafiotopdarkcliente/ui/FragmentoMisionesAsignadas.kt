@@ -1,16 +1,21 @@
 package com.example.desafiotopdarkcliente.ui
 
+
 import adaptadores.AdaptadorRvMisionesAsignadas
+import adaptadores.AdaptadorRvMisionesNoSuperadas
 import android.annotation.SuppressLint
+
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import api.MisionViewModel
+import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.databinding.FragmentFragmentoMisionesAsignadasBinding
 import modelo.MostrarMision
 import parametros.Parametros
@@ -28,6 +33,7 @@ class FragmentoMisionesAsignadas : Fragment() {
     var datosRepresentar: ArrayList<MostrarMision> = ArrayList()
     lateinit var customAdapter: AdaptadorRvMisionesAsignadas
 
+
     companion object {
         fun newInstance() = FragmentoMisionesAsignadas()
     }
@@ -38,26 +44,24 @@ class FragmentoMisionesAsignadas : Fragment() {
         misionViewModel = ViewModelProvider(this)[MisionViewModel::class.java]
 
         fragmentoMisionesAsignadas.getMisionesAsignadasVM(Parametros.usuarioLogeado!!)
-        fragmentoMisionesAsignadas.myResponseListA.observe(this){misionesAsignadas ->
-            if(!misionesAsignadas.isEmpty()){
+        fragmentoMisionesAsignadas.myResponseListA.observe(this) { misionesAsignadas ->
+            if (!misionesAsignadas.isEmpty()) {
                 datosRepresentar.clear()
-                for (mis in misionesAsignadas){
+                for (mis in misionesAsignadas) {
                     misionViewModel.getMisionVM(mis.idmision!!)
-
                 }
-
             }
         }
-        misionViewModel.myResponseM.observe(this){mision ->
+        misionViewModel.myResponseM.observe(this) { mision ->
             mision?.let {
-                if (datosRepresentar.none { it.idmision == mision.idmision }){
-                    datosRepresentar.add(MostrarMision(mision.idmision, mision.nombre.toString(), mision.experiencia))
+                if (datosRepresentar.none { it.idmision == mision.idmision }) {
+                    datosRepresentar.add(
+                        MostrarMision(mision.idmision, mision.nombre.toString(), mision.experiencia))
                     customAdapter.updateData(datosRepresentar)
                 }
 
             }
         }
-
     }
 
     override fun onCreateView(

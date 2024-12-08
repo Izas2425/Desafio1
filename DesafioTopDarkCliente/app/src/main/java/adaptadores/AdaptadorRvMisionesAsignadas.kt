@@ -1,7 +1,9 @@
 package adaptadores
 
+import adaptadores.AdaptadorRvMisiones.ViewHolder
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +14,19 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.ui.FragmentoMisionesAsignadasViewModel
+import com.example.desafiotopdarkcliente.ui.FragmentoMisionesSuperadasViewModel
 import com.example.desafiotopdarkcliente.ui.FragmentoVMisionesViewModel
 import modelo.MostrarMision
 
 class AdaptadorRvMisionesAsignadas(
     var misiones: ArrayList<MostrarMision>,
     var context: Context,
+    private val viewModelVMisionesAsignadas: FragmentoMisionesAsignadasViewModel,
+    private val viewModelVMisiones: FragmentoVMisionesViewModel): RecyclerView.Adapter<AdaptadorRvMisionesAsignadas.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorRvMisionesAsignadas.ViewHolder {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_card_mision, parent, false)
-        val viewHolder = ViewHolder(vista)
+        val viewHolder = AdaptadorRvMisionesAsignadas.ViewHolder(vista)
         return viewHolder
     }
 
@@ -35,17 +40,18 @@ class AdaptadorRvMisionesAsignadas(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(nuevaLista: ArrayList<MostrarMision>){
+    fun updateData(nuevaLista: ArrayList<MostrarMision>) {
         misiones = nuevaLista
         notifyDataSetChanged()
     }
 
-    class ViewHolder(view: View):RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val nombreMision = view.findViewById(R.id.tvNombreM) as TextView
         val experienciaMision = view.findViewById(R.id.tvExperienciaM) as TextView
 
         val btnDetelleM = view.findViewById(R.id.btnDetalleM) as Button
+
 
         @SuppressLint("ResourceAsColor")
         fun bind(mis: MostrarMision, context: Context, pos: Int, adaptadorRvDatos: AdaptadorRvMisionesAsignadas){
@@ -53,6 +59,21 @@ class AdaptadorRvMisionesAsignadas(
             experienciaMision.text = mis.experiencia.toString()
 
             btnDetelleM.setOnClickListener {
+                adaptadorRvDatos.viewModelVMisiones.getMisionVM(mis.idmision!!)
+                adaptadorRvDatos.viewModelVMisiones.myResponseM.observe(context as LifecycleOwner){ mision ->
+                    mision?.let {
+                        AlertDialog.Builder(context)
+                            .setTitle("Detalle de la misión")
+                            .setMessage("Nombre: ${mision.nombre}\n" +
+                                    "Experiencia: ${mision.experiencia}\n" +
+                                    "Descripcion: ${mision.descripcion}\n" +
+                                    "Matrícula de la nave: ${mision.matriculanave}")
+                            .setPositiveButton("Aceptar"){dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                }
             }
         }
     }

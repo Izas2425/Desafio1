@@ -1,6 +1,6 @@
 package adaptadores
 
-import adaptadores.AdaptadorRvMisionesAsignadas.ViewHolder
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
