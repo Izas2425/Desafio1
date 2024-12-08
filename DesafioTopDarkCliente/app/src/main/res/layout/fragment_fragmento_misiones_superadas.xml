@@ -10,6 +10,7 @@
         android:id="@+id/imFondoMisionesSuperadas"
         android:layout_width="408dp"
         android:layout_height="731dp"
+        android:alpha="0.5"
         android:src="@drawable/fondo_misiones_vader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +23,8 @@
         android:id="@+id/listaMisionesSuperadas"
         android:layout_width="403dp"
         android:layout_height="354dp"
-        android:layout_marginTop="120dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnAceptarMisionesAsignadas"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imFondoMisionesSuperadas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"

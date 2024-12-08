@@ -75,6 +75,21 @@ class AdaptadorRvMisionesAsignadas(
                     }
                 }
             }
+
+            itemView.setOnLongClickListener(View.OnLongClickListener {
+                AlertDialog.Builder(context)
+                    .setTitle("Confirmación")
+                    .setMessage("¿Estás seguro de querer iniciar la simulacion de la misión ${mis.nombre}?")
+                    .setPositiveButton("Iniciar"){ dialog, _ ->
+                        dialog.dismiss()
+                        // llamar al fragmento simulación
+                    }
+                    .setNegativeButton("Cancelar"){dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+                true
+            })
         }
     }
 }
