@@ -1,9 +1,11 @@
 package api
 
 import modelo.Misionasignada
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import parametros.Parametros
+import java.util.concurrent.TimeUnit
 
 object UserNetwork {
     val retrofit by lazy {

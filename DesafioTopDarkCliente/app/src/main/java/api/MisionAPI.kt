@@ -43,6 +43,9 @@ interface MisionAPI {
     @POST("registrarMision")
     suspend fun addMision(@Body userData: Mision): Response<Boolean>
 
+    @POST("registrarMisionYObtenerId")
+    suspend fun addMisionYObtenerId(@Body userData: Mision): Response<Int?>
+
     @POST("registrarVuelo")
     suspend fun addVuelo(@Body userData: Vuelo): Response<Boolean>
 

@@ -39,6 +39,26 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
         return null
     }
 
+    override fun obtenerPorIdUsuario(idUsuario: Int): Misionasignada? {
+        val sql = "SELECT * FROM misionesasignadas WHERE idusuario = ?"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setInt(1, idUsuario)
+            val resultSet = statement.executeQuery()
+
+            if (resultSet.next()) {
+                return Misionasignada(
+                    id = resultSet.getInt("id"),
+                    idusuario = resultSet.getInt("idusuario"),
+                    idmision = resultSet.getInt("idmision"),
+                    estado = resultSet.getString("estado")
+                )
+            }
+        }
+        return null
+    }
+
     override fun eliminar(id: Int): Boolean {
         val sql = "DELETE FROM misionesasignadas WHERE id = ?"
         val connection = Database.getConnection()
@@ -72,12 +92,13 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
         return misionesasignadas
     }
 
-    override fun obtenerSuperadas(): List<Misionasignada> {
+    override fun obtenerSuperadas(idUsuario: Int): List<Misionasignada> {
         val misionesSuperadas = mutableListOf<Misionasignada>()
-        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'Superada'"
+        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'Superada' AND  idusuario = ?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
+            statement.setInt(1, idUsuario)
             val resultSet = statement.executeQuery()
 
             while (resultSet.next()) {
@@ -93,12 +114,13 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
         return misionesSuperadas
     }
 
-    override fun obtenerNoSuperadas(): List<Misionasignada> {
-        val misionesNoSuperadas = mutableListOf<Misionasignada>()
-        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'No superada'"
+    override fun obtenerNoSuperadas(idUsuario: Int): List<Misionasignada> {
+        val misionesSuperadas = mutableListOf<Misionasignada>()
+        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'No superada' and idusuario = ?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
+            statement.setInt(1, idUsuario)
             val resultSet = statement.executeQuery()
 
             while (resultSet.next()) {
@@ -108,9 +130,33 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
                     idmision = resultSet.getInt("idmision"),
                     estado = resultSet.getString("estado")
                 )
-                misionesNoSuperadas.add(misionasignada)
+                misionesSuperadas.add(misionasignada)
             }
         }
-        return misionesNoSuperadas
+        return misionesSuperadas
     }
+
+    override fun obtenerAsignadas(idUsuario: Int): List<Misionasignada> {
+        val misionesSuperadas = mutableListOf<Misionasignada>()
+        val sql = "SELECT * FROM misionesasignadas WHERE estado = 'Asignada' and idusuario = ?"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setInt(1, idUsuario)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val misionasignada = Misionasignada(
+                    id = resultSet.getInt("id"),
+                    idusuario = resultSet.getInt("idusuario"),
+                    idmision = resultSet.getInt("idmision"),
+                    estado = resultSet.getString("estado")
+                )
+                misionesSuperadas.add(misionasignada)
+            }
+        }
+        return misionesSuperadas
+    }
+
+
 }

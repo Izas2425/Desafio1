@@ -11,4 +11,24 @@
         android:label="Piloto"
         tools:layout="@layout/fragment_fragmento_inicial_pilotos" />
 
+    <fragment
+        android:id="@+id/navegation_fragmento_misiones_asignadas"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoMisionesAsignadas"
+        android:label="fragment_fragmento_misiones_asignadas"
+        tools:layout="@layout/fragment_fragmento_misiones_asignadas"/>
+
+    <fragment
+        android:id="@+id/navegation_fragmento_misiones_superadas"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoMisionesSuperadas"
+        android:label="fragment_fragmento_misiones_superadas"
+        tools:layout="@layout/fragment_fragmento_misiones_superadas"/>
+
+    <fragment
+        android:id="@+id/navegation_fragmento_misiones_no_superadas"
+        android:name="com.example.desafiotopdarkcliente.ui.FragmentoMisionesNoSuperadas"
+        android:label="fragment_fragmento_misiones_no_superadas"
+        tools:layout="@layout/fragment_fragmento_misiones_no_superadas"/>
+
+
+
 </navigation>

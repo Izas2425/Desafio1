@@ -13,29 +13,25 @@ val misionasignadaDAO: MisionasignadaDAO = MisionasignadaDAOiImpl()
 
 fun Route.rutasMisionasignada() {
     route("/listadoMisionesasignadas") {
-        get {
-            if (misionasignadaDAO.obtenerTodas().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, misionasignadaDAO.obtenerTodas())
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
-        }
-
-        get("{id?}") {
+         get("{id?}") {
             // Intenta obtener y convertir el parámetro "id" de la URL a Int.
             val id = call.parameters["id"]?.toIntOrNull() ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
             // Llama a usuarioDAO.obtener(id) para buscar el usuario por el ID proporcionado.
-            val misionasignada = misionasignadaDAO.obtenerPorId(id) ?: return@get call.respond(HttpStatusCode.NotFound, null)
+            if(misionasignadaDAO.obtenerAsignadas(id).isNotEmpty()){
+                return@get call.respond(HttpStatusCode.OK, misionasignadaDAO.obtenerAsignadas(id))
+            }else{
+                return@get call.respond(HttpStatusCode.NotFound, null)
+            }
 
-            // Si el usuario es encontrado, responde con un código 200 (OK) y el usuario en el cuerpo de la respuesta.
-            call.respond(HttpStatusCode.OK, misionasignada)
         }
     }
     route("/listadoMisionesasignadasSuperadas") {
-        get {
-            if (misionasignadaDAO.obtenerSuperadas().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, misionasignadaDAO.obtenerSuperadas())
+        get ("{id?}"){
+            val id = call.parameters["id"]?.toIntOrNull() ?: return@get call.respond(HttpStatusCode.BadRequest, null)
+
+            if (misionasignadaDAO.obtenerSuperadas(id).isNotEmpty()) {
+                return@get call.respond(HttpStatusCode.OK, misionasignadaDAO.obtenerSuperadas(id))
             } else {
                 return@get call.respond(HttpStatusCode.NotFound, null)
             }
@@ -43,9 +39,10 @@ fun Route.rutasMisionasignada() {
     }
 
     route("/listadoMisionesasignadasNoSuperadas") {
-        get {
-            if (misionasignadaDAO.obtenerNoSuperadas().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, misionasignadaDAO.obtenerNoSuperadas())
+        get ("{id?}"){
+            val id = call.parameters["id"]?.toIntOrNull() ?: return@get call.respond(HttpStatusCode.BadRequest, null)
+            if (misionasignadaDAO.obtenerNoSuperadas(id).isNotEmpty()) {
+                return@get call.respond(HttpStatusCode.OK, misionasignadaDAO.obtenerNoSuperadas(id))
             } else {
                 return@get call.respond(HttpStatusCode.NotFound, null)
             }

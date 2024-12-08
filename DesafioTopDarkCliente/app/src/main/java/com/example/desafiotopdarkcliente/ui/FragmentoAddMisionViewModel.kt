@@ -62,6 +62,15 @@ class FragmentoAddMisionViewModel : ViewModel() {
         }
     }
 
+    fun addMisObtenerIdMV(mision: Mision){
+        viewModelScope.launch {
+            val response: Response<Int?> = UserNetwork.retrofitMision.addMisionYObtenerId(mision)
+            Log.e("Izaskun", "ultima mision en addMisObtenerIdM ${_ultimoId.value}")
+            _ultimoId.value = response.body()
+            _errorCode.value = response.code()
+        }
+    }
+
     fun addVueMV(vuelo: Vuelo){
         viewModelScope.launch {
             val response: Response<Boolean> = UserNetwork.retrofitMision.addVuelo(vuelo)

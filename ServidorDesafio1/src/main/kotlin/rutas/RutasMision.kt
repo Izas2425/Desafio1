@@ -54,9 +54,21 @@ fun Route.rutasMision(){
             if(mision != null) return@post call.respond(HttpStatusCode.BadRequest, null)
 
             if (!misionDAO.insertar(mis)){
-                return@post call.respond(HttpStatusCode.Conflict, false)
+                return@post call.respond(HttpStatusCode.Conflict, null)
             }
             call.respond(HttpStatusCode.Created, true)
+        }
+    }
+
+    route("/registrarMisionYObtenerId") {
+        post{
+            val mis = call.receive<Mision>()
+            val idObtenido = misionDAO.insertarYObtenerId(mis)
+
+            if (idObtenido == null){
+                return@post call.respond(HttpStatusCode.Conflict, null)
+            }
+            call.respond(HttpStatusCode.Created, idObtenido)
         }
     }
 
