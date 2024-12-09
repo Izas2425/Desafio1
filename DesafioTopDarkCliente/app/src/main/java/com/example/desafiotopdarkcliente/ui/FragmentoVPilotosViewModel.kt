@@ -29,6 +29,9 @@ class FragmentoVPilotosViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
+    private val _updateResponse = MutableLiveData<Boolean>()
+    val updateResponse: LiveData<Boolean> get() = _updateResponse
+
 
 
     fun addUsuario(piloto: MostrarPiloto) {
@@ -88,6 +91,21 @@ class FragmentoVPilotosViewModel : ViewModel() {
                 _myResponseListP.value = response.body()
             } else {
                 _myResponseListP.value = emptyList()
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun updateUsuarioVM(id: Int, usuario: Usuario){
+        viewModelScope.launch {
+            _isLoading.value = true
+            val response: Response<Boolean> = UserNetwork.retrofit.updateUsuario(id, usuario)
+
+            if (response.isSuccessful){
+                _updateResponse.value = response.body() ?: false
+            }else{
+                _updateResponse.value = false
                 _errorCode.value = response.code()
             }
             _isLoading.value = false
