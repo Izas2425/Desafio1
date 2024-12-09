@@ -22,6 +22,9 @@ import modelo.MostrarMision
 import parametros.Parametros
 
 class FragmentoMisionesAsignadas : Fragment() {
+
+    var misAsignada : Int= 0
+
     private var _binding: FragmentFragmentoMisionesAsignadasBinding? = null
     private val binding get() = _binding!!
 
@@ -50,6 +53,7 @@ class FragmentoMisionesAsignadas : Fragment() {
                 datosRepresentar.clear()
                 for (mis in misionesAsignadas) {
                     misionViewModel.getMisionVM(mis.idmision!!)
+                    misAsignada = mis.id!!
                 }
             }
         }
@@ -57,12 +61,14 @@ class FragmentoMisionesAsignadas : Fragment() {
             mision?.let {
                 if (datosRepresentar.none { it.idmision == mision.idmision }) {
                     datosRepresentar.add(
-                        MostrarMision(mision.idmision, mision.nombre.toString(), mision.experiencia))
+                        MostrarMision(mision.idmision, mision.nombre.toString(), mision.experiencia, misAsignada))
                     customAdapter.updateData(datosRepresentar)
                 }
 
             }
         }
+
+
     }
 
     override fun onCreateView(

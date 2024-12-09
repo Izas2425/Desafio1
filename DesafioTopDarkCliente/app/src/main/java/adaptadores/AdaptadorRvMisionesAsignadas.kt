@@ -18,6 +18,7 @@ import com.example.desafiotopdarkcliente.ui.FragmentoMisionesAsignadasViewModel
 import com.example.desafiotopdarkcliente.ui.FragmentoMisionesSuperadasViewModel
 import com.example.desafiotopdarkcliente.ui.FragmentoSimulacion
 import com.example.desafiotopdarkcliente.ui.FragmentoVMisionesViewModel
+import modelo.Misionasignada
 import modelo.MostrarMision
 
 class AdaptadorRvMisionesAsignadas(
@@ -84,9 +85,11 @@ class AdaptadorRvMisionesAsignadas(
 
             itemView.setOnLongClickListener(View.OnLongClickListener {
 
+
                 val nuevaMision = viewModelVMisionesAsignadas.misionSeleccionada.value ?: MostrarMision()
                 nuevaMision.idmision = mis.idmision!!
                 viewModelVMisionesAsignadas.misionSeleccionada.value = nuevaMision
+                viewModelVMisionesAsignadas.idMisionAsignadaSeleccionada.value = mis.idMisionAsignada
 
                 AlertDialog.Builder(context)
                     .setTitle("Confirmación")

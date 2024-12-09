@@ -17,13 +17,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvMensajesSimulacion"
-        android:layout_width="334dp"
-        android:layout_height="533dp"
-        android:text="TextView"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsMensajeSimulacion"
+        android:layout_width="328dp"
+        android:layout_height="384dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="@+id/imFondoSimulacion"
-        app:layout_constraintTop_toTopOf="@+id/imFondoSimulacion" />
+        app:layout_constraintTop_toTopOf="@+id/imFondoSimulacion"
+        app:layout_constraintVertical_bias="0.838">
+
+        <TextView
+            android:id="@+id/tvMensajesSimulacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:text="TextView" />
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,4 +12,7 @@ data class MostrarMision(
     @SerializedName("experiencia")
     var experiencia: Int? = null,
 
+    @SerializedName("misionAsingada")
+    var idMisionAsignada: Int? = null
+
 )
