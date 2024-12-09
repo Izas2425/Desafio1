@@ -11,4 +11,5 @@ interface MisionasignadaDAO {
     fun obtenerSuperadas(idUsuario: Int):List<Misionasignada>
     fun obtenerNoSuperadas(idUsuario: Int):List<Misionasignada>
     fun obtenerAsignadas(idUsuario: Int):List<Misionasignada>
+    fun actualizar(misionasignada: Misionasignada): Boolean
 }

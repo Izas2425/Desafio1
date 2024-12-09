@@ -14,6 +14,9 @@ import modelo.Usuario
 import retrofit2.Response
 
 class FragmentoMisionesAsignadasViewModel : ViewModel() {
+
+    val misionSeleccionada = MutableLiveData<MostrarMision?>()
+
     private val _myResponseList = MutableLiveData<List<MostrarMision>>()
     val myResponseList: MutableLiveData<List<MostrarMision>> get() = _myResponseList
 

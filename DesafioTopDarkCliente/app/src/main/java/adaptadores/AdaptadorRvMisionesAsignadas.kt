@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiotopdarkcliente.R
 import com.example.desafiotopdarkcliente.ui.FragmentoMisionesAsignadasViewModel
 import com.example.desafiotopdarkcliente.ui.FragmentoMisionesSuperadasViewModel
+import com.example.desafiotopdarkcliente.ui.FragmentoSimulacion
 import com.example.desafiotopdarkcliente.ui.FragmentoVMisionesViewModel
 import modelo.MostrarMision
 
@@ -32,7 +34,7 @@ class AdaptadorRvMisionesAsignadas(
 
     override fun onBindViewHolder(holder: AdaptadorRvMisionesAsignadas.ViewHolder, position: Int) {
         val item = misiones.get(position)
-        holder.bind(item, context, position, this)
+        holder.bind(item, context, position, this, viewModelVMisionesAsignadas)
     }
 
     override fun getItemCount(): Int {
@@ -54,7 +56,11 @@ class AdaptadorRvMisionesAsignadas(
 
 
         @SuppressLint("ResourceAsColor")
-        fun bind(mis: MostrarMision, context: Context, pos: Int, adaptadorRvDatos: AdaptadorRvMisionesAsignadas){
+        fun bind(mis: MostrarMision,
+                 context: Context,
+                 pos: Int,
+                 adaptadorRvDatos: AdaptadorRvMisionesAsignadas,
+                 viewModelVMisionesAsignadas: FragmentoMisionesAsignadasViewModel){
             nombreMision.text = mis.nombre
             experienciaMision.text = mis.experiencia.toString()
 
@@ -77,12 +83,24 @@ class AdaptadorRvMisionesAsignadas(
             }
 
             itemView.setOnLongClickListener(View.OnLongClickListener {
+
+                val nuevaMision = viewModelVMisionesAsignadas.misionSeleccionada.value ?: MostrarMision()
+                nuevaMision.idmision = mis.idmision!!
+                viewModelVMisionesAsignadas.misionSeleccionada.value = nuevaMision
+
                 AlertDialog.Builder(context)
                     .setTitle("Confirmación")
                     .setMessage("¿Estás seguro de querer iniciar la simulacion de la misión ${mis.nombre}?")
                     .setPositiveButton("Iniciar"){ dialog, _ ->
                         dialog.dismiss()
                         // llamar al fragmento simulación
+                        val fragmentoSimulacion = FragmentoSimulacion()
+                        val activity = context as? AppCompatActivity
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.replace(R.id.miFragContainerP, fragmentoSimulacion)
+                            ?.addToBackStack(null)
+                            ?.commit()
+
                     }
                     .setNegativeButton("Cancelar"){dialog, _ ->
                         dialog.dismiss()

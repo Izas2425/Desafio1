@@ -158,5 +158,18 @@ class MisionasignadaDAOiImpl: MisionasignadaDAO {
         return misionesSuperadas
     }
 
+    override fun actualizar(misionasignada: Misionasignada): Boolean {
+       val sql = "UPDATE misionesasignadas SET estado = ? WHERE id = ?"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setString(1, misionasignada.estado)
+            statement.setInt(2, misionasignada.id)
+
+            return statement.executeUpdate() > 0
+        }
+        return false
+    }
+
 
 }

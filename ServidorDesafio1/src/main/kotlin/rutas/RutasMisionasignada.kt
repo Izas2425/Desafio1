@@ -76,4 +76,18 @@ fun Route.rutasMisionasignada() {
         }
     }
 
+    route("/actualizarMisionasignada") {
+        put("{id?}") {
+            val id = call.parameters["id"]?.toIntOrNull() ?: return@put call.respond(HttpStatusCode.BadRequest, false)
+            val mis = call.receive<Misionasignada>()
+            val misionasignada = misionasignadaDAO.obtenerPorId(id)?: return@put call.respond(HttpStatusCode.NotFound, false)
+
+            if (!misionasignadaDAO.actualizar(mis)) {
+                    return@put call.respond(HttpStatusCode.BadRequest, false)
+            }
+
+            call.respond(HttpStatusCode.Accepted, true)
+        }
+    }
+
 }

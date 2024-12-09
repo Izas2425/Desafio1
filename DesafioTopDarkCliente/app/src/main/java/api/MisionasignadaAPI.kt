@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface MisionasignadaAPI {
@@ -27,4 +28,7 @@ interface MisionasignadaAPI {
 
     @DELETE ("borrarMisionasignada")
     suspend fun deleteMisionasignada(@Path("id") id: Int): Response<Boolean>
+
+    @PUT("/actualizarMisionasignada/{id}")
+    suspend fun updateMisionasignada(@Path("id") id: Int, @Body userData: Misionasignada):Response<Boolean>
 }
